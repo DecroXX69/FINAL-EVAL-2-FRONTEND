@@ -1,0 +1,144 @@
+/* General Footer Container */
+.footerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevent any footer overflow issues */
+}
+
+/* Grey Section */
+.greySection {
+    display: flex;
+    background-color: rgba(217, 217, 217, 1);
+    padding: 40px 20px; /* Extended padding to cover extra space above */
+    justify-content: space-between;
+    position: relative; /* Ensure it adjusts dynamically */
+    margin-top: -20px; /* Shift upwards to cover any gaps */
+}
+
+.leftSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.middleSection {
+    flex: 1;
+    text-align: center;
+}
+
+.rightSection {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+}
+
+.storeLogo {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+.companyInfo {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Subscribe Section */
+.heading {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subscribeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.emailInput {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+.subscribeButton {
+    padding: 8px 12px;
+    background-color: #ff9900;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.emailPolicy {
+    font-size: 12px;
+    color: #666;
+}
+
+.socialIcons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+/* Links Section */
+.linksColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.linkHeading {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Navy Blue Section */
+.blueSection {
+    background-color: #001f3f;
+    color: #fff;
+    padding: 5px 20px; /* Reduced padding for smaller height */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px; /* Ensures a smaller height for the blue footer */
+}
+
+.smallLinks {
+    display: flex;
+    gap: 15px;
+}
+
+.blueLink {
+    color: #fff;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.blueLink:hover {
+    text-decoration: underline;
+}

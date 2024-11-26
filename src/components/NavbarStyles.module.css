@@ -1,0 +1,152 @@
+/* components/NavbarStyles.module.css */
+.topNav {
+    background-color: rgba(250, 250, 250, 1);
+    border-bottom: 1px solid #eee;
+  }
+  
+  .topNavContent {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .leftContent {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .promoText {
+    font-size: 0.875rem;
+  }
+  
+  .location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    margin-left: 220px;
+  }
+  
+  .changeLocation {
+    color: #f97316;
+    text-decoration: none;
+  }
+  
+  .cartButton {
+    background-color: #16a34a;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .divider {
+    width: 1px;
+    height: 1rem;
+    background-color: white;
+    margin: 0 0.5rem;
+  }
+  
+  /* Main Navbar Styles */
+  .mainNav {
+    border-bottom: 1px solid #eee;
+  }
+  
+  .mainNavContent {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo img {
+    height: 2.5rem;
+  }
+  
+  .navLinks {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .navButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 1.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .navButton.active {
+    background-color: orange;
+    color: white;
+  }
+  
+  .loginButton {
+    background-color: black;
+    color: white;
+  }
+  
+  /* Popular Restaurants Styles */
+  .restaurantsSection {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .restaurantsSection h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .restaurantsGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .restaurantCard {
+    aspect-ratio: 1;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .restaurantCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .restaurantCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .restaurantsGrid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .restaurantsGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .restaurantsGrid {
+      grid-template-columns: 1fr;
+    }
+  }
