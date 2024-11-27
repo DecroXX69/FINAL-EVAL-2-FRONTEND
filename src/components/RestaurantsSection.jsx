@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './NavbarStyles.module.css';
 import mcd from '../assets/mcd.png';
 import papa from '../assets/papa.png';
@@ -8,17 +9,22 @@ import king from '../assets/king.png';
 import shawarma from '../assets/shawarma.png';
 
 const RestaurantsSection = () => {
+  const navigate = useNavigate();
+
   const restaurants = [
-    { logo: mcd },
-    { logo: papa },
-    { logo: kfc },
-    { logo: texas },
-    { logo: king },
-    { logo: shawarma }
+    { logo: mcd, id: 'mcdonalds', name: "McDonald's East London", slogan: "I'm lovin' it!" },
+    { logo: papa, id: 'papa', name: "Papa Johns", slogan: "Better Ingredients. Better Pizza." },
+    { logo: kfc, id: 'kfc', name: "KFC West London", slogan: "Finger Lickin' Good" },
+    { logo: texas, id: 'texas', name: "Texas Chicken", slogan: "Bold Texas Flavor" },
+    { logo: king, id: 'king', name: "Burger King", slogan: "Have It Your Way" },
+    { logo: shawarma, id: 'shawarma', name: "Shawarma 1", slogan: "Authentic Middle Eastern Taste" }
   ];
 
   const handleRestaurantClick = (restaurant) => {
-    console.log(`Clicked on restaurant`);
+    // Store selected restaurant info in localStorage or state management solution
+    localStorage.setItem('selectedRestaurant', JSON.stringify(restaurant));
+    // Navigate to product page
+    navigate('/product');
   };
 
   return (

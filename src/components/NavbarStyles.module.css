@@ -1,4 +1,5 @@
 /* components/NavbarStyles.module.css */
+/* Top Navbar Styles */
 .topNav {
     background-color: rgba(250, 250, 250, 1);
     border-bottom: 1px solid #eee;
@@ -52,11 +53,8 @@
     background-color: white;
     margin: 0 0.5rem;
   }
-  
-  /* Main Navbar Styles */
-  .mainNav {
-    border-bottom: 1px solid #eee;
-  }
+ /* Main Navbar Styles */
+ 
   
   .mainNavContent {
     max-width: 1400px;
