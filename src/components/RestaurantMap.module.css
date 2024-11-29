@@ -1,0 +1,77 @@
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  margin: 2rem 0;
+}
+
+.restaurantInfo {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background-color: #1e1e1e;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 4px;
+  z-index: 1000;
+  max-width: 300px;
+}
+
+.restaurantDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurantName {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.restaurantPhoneTitle,
+.restaurantWebsiteTitle {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.restaurantPhone,
+.restaurantWebsite {
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.restaurantWebsite {
+  text-decoration: none;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.custom-marker-icon .markerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-marker-icon .markerContent {
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.custom-marker-icon .markerName {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.custom-marker-icon .markerIcon {
+  background-color: navy;
+  color: #ff9500;
+  padding: 0.5rem;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+}

@@ -4,7 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import TopNavbar from './TopNavbar';
 import MainNavbar from './MainNavbar';
 import styles from './ProductPage.module.css';
-
+import DeliveryInfo from './DeliveryInfo';
+import RestaurantMap from './RestaurantMap';
+import ReviewList from './ReviewList';
+import RestaurantsSection from './RestaurantsSection';
+import Footer  from './footer';
 // Import your assets
 import orderIcon from '../assets/order-icon.png';
 import deliveryIcon from '../assets/delivery-icon.png';
@@ -15,6 +19,7 @@ import offer1 from '../assets/offer1.png';
 import offer2 from '../assets/offer2.png';
 import offer3 from '../assets/offer3.png';
 import burgerimg from '../assets/burgerimg.png';
+import addToCartIcon from '../assets/add-to-cart-icon.png';
 
 const ProductPage = () => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
@@ -31,19 +36,43 @@ const ProductPage = () => {
     setSelectedRestaurant(JSON.parse(storedRestaurant));
 
     const fetchFoodItems = async () => {
+      const token = localStorage.getItem('token');
+    
+      if (!token) {
+        console.error("No token found in localStorage");
+        return;
+      }
+    
       try {
-        const response = await fetch('/api/food-items', {
+        const response = await fetch('http://localhost:5000/api/food-items', {
+          method: 'GET',
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
         });
-        const data = await response.json();
-        setFoodItems(data);
+    
+        console.log('Response status:', response.status);
+        
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error('Error fetching food items:', errorText);
+          return;
+        }
+    
+        const foodItems = await response.json();
+        console.log('Food Items:', foodItems);
+        setFoodItems(foodItems);
       } catch (error) {
-        console.error('Error fetching food items:', error);
+        console.error('Fetch error:', error);
       }
     };
+    
     fetchFoodItems();
+    
+    
+   
+    
   }, [navigate]);
 
   const handleAddToCart = (item) => {
@@ -122,50 +151,81 @@ const ProductPage = () => {
         
       </div>
 
-      {foodItems.map((category) => (
-        <div key={category._id} className={styles.categorySection}>
-          <h2 className={category.category === 'Burgers' ? styles.categoryTitleBlack : styles.categoryTitleOrange}>
-            {category.category}
-          </h2>
-          <div className={styles.foodItemGrid}>
-            {category.items.map((item) => (
-              <div key={item._id} className={styles.foodItemCard}>
-                <div className={styles.foodItemInfo}>
-                  <h3 className={styles.foodItemTitle}>{item.name}</h3>
-                  <p className={styles.foodItemDescription}>{item.description}</p>
-                  <p className={styles.foodItemPrice}>${item.price.toFixed(2)}</p>
-                </div>
-                <div className={styles.foodItemImageWrapper}>
-                  <img src={item.image} alt={item.name} className={styles.foodItemImage} />
-                  <button
-                    className={styles.addToCartButton}
-                    onClick={() => handleAddToCart(item)}
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-            ))}
+         {/* Burgers */}
+      <div className={styles.sectionTitle}>Burgers</div>
+      <div className={styles.foodItemGrid}>
+        {foodItems.filter(item => item.category === 'Burgers').map((item) => (
+          <div key={item._id} className={styles.foodItemCard}>
+            <div className={styles.foodItemInfo}>
+              <h3 className={styles.foodItemTitle}>{item.name}</h3>
+              <p className={styles.foodItemDescription}>{item.description}</p>
+              <p className={styles.foodItemPrice}>₹ {item.price.toFixed(2)}</p>
+            </div>
+            <div className={styles.foodItemImageWrapper}>
+              <img src={item.image} alt={item.name} className={styles.foodItemImage} />
+              <button
+                className={styles.addToCartButton}
+                onClick={() => handleAddToCart(item)}
+              >
+                <img src={addToCartIcon} alt="Add to Cart" />
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
-      {cart.length > 0 && (
-        <div className={styles.cartSection}>
-          <h2 className={styles.cartTitle}>Your Cart</h2>
-          <ul className={styles.cartItems}>
-            {cart.map((item, index) => (
-              <li key={index} className={styles.cartItem}>
-                <div className={styles.cartItemInfo}>
-                  <h3 className={styles.cartItemTitle}>{item.name}</h3>
-                  <p className={styles.cartItemDescription}>{item.description}</p>
-                </div>
-                <p className={styles.cartItemPrice}>${item.price.toFixed(2)}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {/* Fries */}
+      <div className={styles.sectionTitle} style={{ color: '#FF9900' }}>Fries</div>
+      <div className={styles.foodItemGrid}>
+        {foodItems.filter(item => item.category === 'Fries').map((item) => (
+          <div key={item._id} className={styles.foodItemCard}>
+            <div className={styles.foodItemInfo}>
+              <h3 className={styles.foodItemTitle}>{item.name}</h3>
+              <p className={styles.foodItemDescription}>{item.description}</p>
+              <p className={styles.foodItemPrice}>₹{item.price.toFixed(2)}</p>
+            </div>
+            <div className={styles.foodItemImageWrapper}>
+              <img src={item.image} alt={item.name} className={styles.foodItemImage} />
+              <button
+                className={styles.addToCartButton}
+                onClick={() => handleAddToCart(item)}
+              >
+                <img src={addToCartIcon} alt="Add to Cart" />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Cold Drinks */}
+      <div className={styles.sectionTitle} style={{ color: '#FF9900' }}>Cold Drinks</div>
+      <div className={styles.foodItemGrid}>
+        {foodItems.filter(item => item.category === 'Cold Drinks').map((item) => (
+          <div key={item._id} className={styles.foodItemCard}>
+            <div className={styles.foodItemInfo}>
+              <h3 className={styles.foodItemTitle}>{item.name}</h3>
+              <p className={styles.foodItemDescription}>{item.description}</p>
+              <p className={styles.foodItemPrice}>₹ {item.price.toFixed(2)}</p>
+            </div>
+            <div className={styles.foodItemImageWrapper}>
+              <img src={item.image} alt={item.name} className={styles.foodItemImage} />
+              <button
+                className={styles.addToCartButton}
+                onClick={() => handleAddToCart(item)}
+              >
+                <img src={addToCartIcon} alt="Add to Cart" />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <DeliveryInfo />
+
+      <RestaurantMap />
+      <ReviewList />
+      <RestaurantsSection />
+      <Footer />
     </div>
   );
 };

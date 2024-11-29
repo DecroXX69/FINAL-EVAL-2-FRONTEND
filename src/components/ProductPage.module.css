@@ -248,47 +248,4 @@
     cursor: pointer;
   }
   
-  .cartSection {
-    background-color: #fff;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-    width: 300px;
-  }
-  
-  .cartTitle {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  .cartItems {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .cartItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .cartItemTitle {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 0.25rem;
-  }
-  
-  .cartItemDescription {
-    color: #6b7280;
-    font-size: 0.875rem;
-  }
-  
-  .cartItemPrice {
-    font-size: 1rem;
-    font-weight: bold;
-  }
+ 
