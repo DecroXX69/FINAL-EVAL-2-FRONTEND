@@ -9,6 +9,7 @@ import RestaurantMap from './RestaurantMap';
 import ReviewList from './ReviewList';
 import RestaurantsSection from './RestaurantsSection';
 import Footer  from './footer';
+import FoodSection from './FoodSection';
 // Import your assets
 import orderIcon from '../assets/order-icon.png';
 import deliveryIcon from '../assets/delivery-icon.png';
@@ -70,7 +71,6 @@ const ProductPage = () => {
     
     fetchFoodItems();
     
-    
    
     
   }, [navigate]);
@@ -82,7 +82,9 @@ const ProductPage = () => {
   if (!selectedRestaurant) {
     return null;
   }
-
+  const burgers = foodItems.filter(item => item.category === 'Burgers');
+  const fries = foodItems.filter(item => item.category === 'Fries');
+  const coldDrinks = foodItems.filter(item => item.category === 'Cold Drinks');
   return (
     <div className={styles.productPage}>
       <TopNavbar />
@@ -151,74 +153,28 @@ const ProductPage = () => {
         
       </div>
 
-         {/* Burgers */}
-      <div className={styles.sectionTitle}>Burgers</div>
-      <div className={styles.foodItemGrid}>
-        {foodItems.filter(item => item.category === 'Burgers').map((item) => (
-          <div key={item._id} className={styles.foodItemCard}>
-            <div className={styles.foodItemInfo}>
-              <h3 className={styles.foodItemTitle}>{item.name}</h3>
-              <p className={styles.foodItemDescription}>{item.description}</p>
-              <p className={styles.foodItemPrice}>₹ {item.price.toFixed(2)}</p>
-            </div>
-            <div className={styles.foodItemImageWrapper}>
-              <img src={item.image} alt={item.name} className={styles.foodItemImage} />
-              <button
-                className={styles.addToCartButton}
-                onClick={() => handleAddToCart(item)}
-              >
-                <img src={addToCartIcon} alt="Add to Cart" />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Fries */}
-      <div className={styles.sectionTitle} style={{ color: '#FF9900' }}>Fries</div>
-      <div className={styles.foodItemGrid}>
-        {foodItems.filter(item => item.category === 'Fries').map((item) => (
-          <div key={item._id} className={styles.foodItemCard}>
-            <div className={styles.foodItemInfo}>
-              <h3 className={styles.foodItemTitle}>{item.name}</h3>
-              <p className={styles.foodItemDescription}>{item.description}</p>
-              <p className={styles.foodItemPrice}>₹{item.price.toFixed(2)}</p>
-            </div>
-            <div className={styles.foodItemImageWrapper}>
-              <img src={item.image} alt={item.name} className={styles.foodItemImage} />
-              <button
-                className={styles.addToCartButton}
-                onClick={() => handleAddToCart(item)}
-              >
-                <img src={addToCartIcon} alt="Add to Cart" />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Cold Drinks */}
-      <div className={styles.sectionTitle} style={{ color: '#FF9900' }}>Cold Drinks</div>
-      <div className={styles.foodItemGrid}>
-        {foodItems.filter(item => item.category === 'Cold Drinks').map((item) => (
-          <div key={item._id} className={styles.foodItemCard}>
-            <div className={styles.foodItemInfo}>
-              <h3 className={styles.foodItemTitle}>{item.name}</h3>
-              <p className={styles.foodItemDescription}>{item.description}</p>
-              <p className={styles.foodItemPrice}>₹ {item.price.toFixed(2)}</p>
-            </div>
-            <div className={styles.foodItemImageWrapper}>
-              <img src={item.image} alt={item.name} className={styles.foodItemImage} />
-              <button
-                className={styles.addToCartButton}
-                onClick={() => handleAddToCart(item)}
-              >
-                <img src={addToCartIcon} alt="Add to Cart" />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+      <div>
+      <FoodSection 
+        title="Burgers"
+        items={burgers}
+        onAddToCart={handleAddToCart}
+        addToCartIcon={addToCartIcon}
+      />
+      
+      <FoodSection 
+        title="Fries"
+        items={fries}
+        onAddToCart={handleAddToCart}
+        addToCartIcon={addToCartIcon}
+      />
+      
+      <FoodSection 
+        title="Cold Drinks"
+        items={coldDrinks}
+        onAddToCart={handleAddToCart}
+        addToCartIcon={addToCartIcon}
+      />
+    </div>
 
       <DeliveryInfo />
 
