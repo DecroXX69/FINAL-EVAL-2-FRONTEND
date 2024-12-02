@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import TopNavbar from './TopNavbar';
 import MainNavbar from './MainNavbar';
 import styles from './ProductPage.module.css';
+import FoodSection from './FoodSection'
 import DeliveryInfo from './DeliveryInfo';
 import RestaurantMap from './RestaurantMap';
 import ReviewList from './ReviewList';
 import RestaurantsSection from './RestaurantsSection';
 import Footer  from './footer';
-import FoodSection from './FoodSection';
+import Cart from './Cart';
+import { CartContext } from '../context/CartContext';
 // Import your assets
 import orderIcon from '../assets/order-icon.png';
 import deliveryIcon from '../assets/delivery-icon.png';
@@ -71,12 +73,40 @@ const ProductPage = () => {
     
     fetchFoodItems();
     
+    
    
     
   }, [navigate]);
 
   const handleAddToCart = (item) => {
-    setCart([...cart, item]);
+    setCart(prevCart => {
+      const existingItem = prevCart.find(cartItem => cartItem._id === item._id);
+      if (existingItem) {
+        // If item exists, increment quantity
+        return prevCart.map(cartItem => 
+          cartItem._id === item._id 
+            ? {...cartItem, quantity: cartItem.quantity + 1}
+            : cartItem
+        );
+      }
+      // If item doesn't exist, add it with quantity 1
+      return [...prevCart, {...item, quantity: 1}];
+    });
+  };
+  
+  const handleRemoveFromCart = (itemId) => {
+    setCart(prevCart => prevCart.filter(item => item._id !== itemId));
+  };
+  
+  const handleUpdateQuantity = (itemId, newQuantity) => {
+    if (newQuantity < 1) return;
+    setCart(prevCart => 
+      prevCart.map(item => 
+        item._id === itemId 
+          ? {...item, quantity: newQuantity}
+          : item
+      )
+    );
   };
 
   if (!selectedRestaurant) {
@@ -145,36 +175,51 @@ const ProductPage = () => {
           </ul>
         </nav>
 
-        <div className={styles.offersGrid}>
-          <img src={offer1} alt="Offer 1" />
-          <img src={offer2} alt="Offer 2" />
-          <img src={offer3} alt="Offer 3" />
-        </div>
+        
         
       </div>
 
-      <div>
-      <FoodSection 
-        title="Burgers"
-        items={burgers}
-        onAddToCart={handleAddToCart}
-        addToCartIcon={addToCartIcon}
-      />
+      <div className={styles.contentWrapper}>
+    <div className={styles.mainContent}>
+      <div className={`${styles.offersGrid} ${cart.length > 0 ? styles.withCart : ''}`}>
+        <img src={offer1} alt="Offer 1" />
+        <img src={offer2} alt="Offer 2" />
+        <img src={offer3} alt="Offer 3" />
+      </div>
       
-      <FoodSection 
-        title="Fries"
-        items={fries}
-        onAddToCart={handleAddToCart}
-        addToCartIcon={addToCartIcon}
-      />
-      
-      <FoodSection 
-        title="Cold Drinks"
-        items={coldDrinks}
-        onAddToCart={handleAddToCart}
-        addToCartIcon={addToCartIcon}
-      />
+      <div className={`${styles.foodSectionsWrapper} ${cart.length > 0 ? styles.withCart : ''}`}>
+        <FoodSection 
+          title="Burgers"
+          items={burgers}
+          onAddToCart={handleAddToCart}
+          addToCartIcon={addToCartIcon}
+        />
+        
+        <FoodSection 
+          title="Fries"
+          items={fries}
+          onAddToCart={handleAddToCart}
+          addToCartIcon={addToCartIcon}
+        />
+        
+        <FoodSection 
+          title="Cold Drinks"
+          items={coldDrinks}
+          onAddToCart={handleAddToCart}
+          addToCartIcon={addToCartIcon}
+        />
+      </div>
     </div>
+    
+    {cart.length > 0 && (
+      <Cart 
+        items={cart}
+        removeFromCart={handleRemoveFromCart}
+        updateQuantity={handleUpdateQuantity}
+      />
+    )}
+  </div>
+
 
       <DeliveryInfo />
 

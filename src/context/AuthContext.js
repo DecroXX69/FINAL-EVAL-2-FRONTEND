@@ -5,35 +5,54 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  // Load user data and token from localStorage on app load
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     const storedToken = localStorage.getItem('token');
 
-    // If both user and token are available, check token validity
     if (storedUser && storedToken) {
-      const tokenExpiry = JSON.parse(atob(storedToken.split('.')[1])).exp * 1000; // Decode JWT to get expiry
+      const tokenExpiry = JSON.parse(atob(storedToken.split('.')[1])).exp * 1000;
       if (Date.now() < tokenExpiry) {
-        setUser(storedUser); // Valid token, set user
+        setUser(storedUser);
       } else {
-        logout(); // Expired token, clear user and token
+        logout();
       }
     }
   }, []);
 
-  const login = (userData) => {
+  const login = (userData, navigate) => {  // Accept navigate as parameter
     setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData)); // Store user data
-    localStorage.setItem('token', userData.token); // Store token
+    localStorage.setItem('user', JSON.stringify(userData));
+    localStorage.setItem('token', userData.token);
+    
+    // Handle redirect after successful login
+    const redirectUrl = localStorage.getItem('redirectAfterAuth');
+    if (redirectUrl) {
+      localStorage.removeItem('redirectAfterAuth');
+      
+      const pendingSharedCart = localStorage.getItem('pendingSharedCart');
+      if (pendingSharedCart) {
+        const sharedCartData = localStorage.getItem(`shared-cart-${pendingSharedCart}`);
+        if (sharedCartData) {
+          localStorage.setItem('cart', sharedCartData);
+          localStorage.removeItem('pendingSharedCart');
+        }
+      }
+      
+      navigate(redirectUrl);
+    } else {
+      navigate('/');
+    }
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    localStorage.removeItem('redirectAfterAuth');
+    localStorage.removeItem('pendingSharedCart');
   };
 
-  const getToken = () => localStorage.getItem('token'); // Helper to get token
+  const getToken = () => localStorage.getItem('token');
 
   return (
     <AuthContext.Provider value={{ user, login, logout, getToken }}>

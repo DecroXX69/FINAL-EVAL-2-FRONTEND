@@ -1,0 +1,210 @@
+.paymentContainer {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.paymentContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+}
+
+.paymentMethods {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;  /* Reduced gap between payment methods */
+}
+
+.walletSection {
+  border: 1px solid orange  ;
+  border-radius: 40px;
+}
+
+.walletOption, .paymentOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;  /* Reduced padding for smaller height */
+}
+
+.leftContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconCircle {
+  width: 36px;  /* Slightly smaller icons */
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.initial {
+  font-style: italic;
+  color: #FF8A00;
+  font-weight: 600;
+}
+
+.walletInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.methodName {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.balance {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Removed .paymentOptions container styles since each option will be individual */
+
+.paymentOption {
+  border: 0.1px solid orange  ;
+  border-radius: 40px;
+  margin-bottom: 12px;  /* Consistent spacing */
+  background: #fff;
+}
+
+.radioInput {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.addDebitCard {
+  background: #fff;
+  border: 1px solid orange;
+  border-radius: 40px;
+  
+  font-weight: 500;
+  padding: 16px;  /* Matching padding with other options */
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.paymentSummary {
+  background: #fff;
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.amountBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #000;
+}
+
+.amount {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.proceedButton {
+  width: 100%;
+  padding: 20px;
+  background: #FF8A00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Rest of the CSS remains the same */
+.successContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.successContent {
+  text-align: center;
+  max-width: 400px;
+}
+
+.checkmark {
+  width: 80px;
+  height: 80px;
+  background: #4CAF50;
+  border-radius: 50%;
+  color: white;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.successMessage {
+  color: #666;
+  margin: 16px 0 24px;
+}
+
+.orderDetails {
+  background: #f5f5f5;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.orderItem {
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.orderItem:last-child {
+  border-bottom: none;
+}
+
+.backToHomeButton {
+  width: 100%;
+  padding: 16px;
+  background: #FF8A00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-top: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.proceedButton:hover,
+.backToHomeButton:hover {
+  background: #e67e00;
+}

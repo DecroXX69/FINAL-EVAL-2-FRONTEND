@@ -1,0 +1,104 @@
+/* AddressSection.module.css */
+.addressContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    margin-bottom: 300px;
+  }
+  
+  .addressHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .backButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .addressGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .addAddressCard {
+    border: 2px dashed #ffddc7;
+    border-radius: 12px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #fff;
+  }
+  
+  .plusIconWrapper {
+    width: 50px;
+    height: 50px;
+    background: #fff3eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .plusIcon {
+    color: #ff6b00;
+    font-size: 1.5rem;
+  }
+  
+  .addAddressCard span {
+    color: #666;
+  }
+  
+  .addressCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    background: white;
+  }
+  
+  .defaultTag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #ff6b00;
+    font-size: 0.8rem;
+  }
+  
+  .addressCard h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  
+  .addressCard p {
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .addressActions {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .addressActions button {
+    color: #ff6b00;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+  }

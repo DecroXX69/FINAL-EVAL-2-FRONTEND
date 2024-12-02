@@ -3,13 +3,14 @@ import React, { useContext } from 'react';
 import styles from './NavbarStyles.module.css';
 import applogo from '../assets/applogo.png';
 import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const MainNavbar = () => {
   const { user } = useContext(AuthContext);
   const isLoggedIn = !!user;
-
+  const navigate = useNavigate();
   const handleUserProfile = () => {
-    alert("user profile");
+    navigate('/profile');
   };
 
   return (
