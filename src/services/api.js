@@ -30,7 +30,6 @@ export const authService = {
   updateProfile: (userData) => API.put('/users/profile', userData),
 };
 
-
 // Error Handling Utility
 export const handleApiError = (error) => {
   if (error.response) {

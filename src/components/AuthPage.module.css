@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 body, html {
     margin: 0;
     padding: 0;
@@ -9,156 +10,141 @@ body, html {
     box-sizing: inherit; /* Apply box-sizing globally */
 }
 
-
+/* Auth page CSS */
 .pageContainer {
     display: flex;
-    flex-direction: column; /* Stack main content and footer vertically */
-    min-height: 100vh; /* Ensure full-page height */
-    overflow: hidden; /* Prevent horizontal scrolling */
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
 }
 
 .mainContainer {
     display: flex;
-    flex: 1; /* Occupy full remaining space */
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    flex: 1;
 }
 
-/* Left (Form) and Right (Image) Sections */
-.leftContainer,
-.rightContainer {
-    flex: 1 1 50%; /* Equal space (50%) on larger screens */
+.leftContainer, .rightContainer {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
+    padding: 40px;
 }
 
 .leftContainer {
-    background-color: #f8f8f8;
+    background-color: #ffffff;
 }
 
-.rightContainer {
-    background-color: #ffffff; /* Optional background */
-    overflow: hidden; /* Prevent overflow issues */
-}
-
-/* Responsive Images */
 .brandContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 30px;
 }
 
 .logo {
     width: 120px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    margin-left: 100px;
 }
 
-.secondaryImage {
-    width: 100px;
-    margin-bottom: 10px;
+.welcomeText {
+    font-size: 24px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.handImage {
+    width: 24px;
+    height: 24px;
 }
 
 .appDescription {
-    font-size: 14px;
-    text-align: center;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-/* Form Styling */
-.inputGroup {
-  margin-bottom: 20px;
-}
-
-.label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #555;
-}
-
-.input {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.show {
-  display: block;
-}
-
-.hide {
-  display: none;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.5;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  
-  height: 400px; /* Ensures consistent spacing for all fields */
+    width: 100%;
+    max-width: 400px;
 }
 
-
-.forgotPassword {
-    align-self: flex-end;
-    font-size: 12px;
-    color: #007BFF;
-    cursor: pointer;
+.inputGroup {
     margin-bottom: 20px;
 }
 
+.label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
 .submitButton {
-    background-color: #007BFF;
+    width: 100%;
+    background-color: #ff9900;
     color: #fff;
-    padding: 10px;
+    padding: 14px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 10px;
 }
 
 .switchText {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
+    color: #666;
 }
 
 .switchButton {
-    color: #007BFF;
+    color: #ff9900;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 500;
 }
 
-/* Right Section Image */
+.rightContainer {
+    
+    overflow: hidden;
+}
+
 .foodImage {
     width: 100%;
-    height: 100%; /* Cover the entire container */
-    object-fit: cover; /* Ensure the image fits proportionally */
+    height: 100%;
+    object-fit: contain; /* Changed from cover to contain */
 }
 
-/* Footer Styling */
-footer {
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-    .leftContainer,
-    .rightContainer {
-        flex: 1 1 100%; /* Stack sections vertically on smaller screens */
-        padding: 15px;
+    .mainContainer {
+        flex-direction: column;
+        max-height: none;
+    }
+    
+    .leftContainer, .rightContainer {
+        flex: none;
+        width: 100%;
+        padding: 20px;
     }
 
     .foodImage {
-        height: 300px; /* Adjust image height for smaller screens */
+        height: 300px;
     }
 }

@@ -10,6 +10,7 @@ import PaymentPage from './components/PaymentPage';
 import UserProfile from './components/UserProfile';
 function App() {
   return (
+    
     <AuthProvider>
     <CartProvider>
       <Router>
@@ -27,6 +28,7 @@ function App() {
       </Router>
       </CartProvider>
     </AuthProvider>
+    
   );
 }
 

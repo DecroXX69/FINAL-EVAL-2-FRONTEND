@@ -25,14 +25,12 @@ const AuthPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       if (isSignUp) {
-        // Handle Registration
-        const response = await authService.register(formData);
+        await authService.register(formData);
         alert('Registration Successful! Please Sign In.');
         setIsSignUp(false);
-        // Clear form data after successful registration
         setFormData({
           name: '',
           phoneNumber: '',
@@ -40,34 +38,40 @@ const AuthPage = () => {
           password: '',
         });
       } else {
-        // Handle Login
         const response = await authService.login({
           email: formData.email,
           password: formData.password,
         });
         
-        // The response should contain both user data and token
-        const { user, token } = response.data;
-        
-        // Call login function from AuthContext with user data and token
-        login({ ...user, token });
-        
-        alert('Login Successful!');
-        navigate('/home');
+        if (response.data && response.data.token) {
+          // Login the user with the complete response data
+          login(response.data);
+          
+          // Handle navigation after successful login
+          alert('Login Successful!');
+          // Wrap navigation in a setTimeout to ensure state updates complete
+          setTimeout(() => {
+            navigate('/home');
+          }, 0);
+        } else {
+          throw new Error('Invalid login response');
+        }
       }
     } catch (error) {
       const errorMessage = handleApiError(error);
       alert(errorMessage);
+      console.error('Login error:', error);
     }
   };
 
+  // Rest of the component remains the same...
   return (
     <div className={styles.pageContainer}>
       <div className={styles.mainContainer}>
         <div className={styles.leftContainer}>
           <div className={styles.brandContainer}>
             <img src={Applogo} alt="App Logo" className={styles.logo} />
-            <img src={image2} alt="Second Logo" className={styles.secondaryImage} />
+            
             <p className={styles.appDescription}>
               Delivering delicious meals right to your doorstep.
             </p>
