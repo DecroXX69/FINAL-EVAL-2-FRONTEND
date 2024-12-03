@@ -17,7 +17,8 @@ const CheckoutPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showAddresses, setShowAddresses] = useState(false);
-  
+  const { selectedAddress } = location.state || {};
+
   useEffect(() => {
     const loadCartItems = async () => {
       if (cartId) {
@@ -25,11 +26,11 @@ const CheckoutPage = () => {
           setLoading(true);
           const response = await fetch(`${process.env.REACT_APP_API_URL}/api/shared-carts/${cartId}`);
           const data = await response.json();
-          
+
           if (!data.success) {
             throw new Error(data.message);
           }
-          
+
           setCartItems(data.cart.items);
         } catch (error) {
           setError(error.message || 'Failed to load shared cart');
@@ -140,7 +141,15 @@ const CheckoutPage = () => {
                     <MapPin size={20} />
                     <div className={styles.addressInfo}>
                       <h3>Delivery Address</h3>
-                      <p>Add address</p>
+                      {selectedAddress ? (
+                        <div>
+                          <p>{selectedAddress.name}</p>
+                          <p>{selectedAddress.fullAddress}</p>
+                          <p>{selectedAddress.phoneNumber}</p>
+                        </div>
+                      ) : (
+                        <p>Add address</p>
+                      )}
                     </div>
                   </div>
                   <ChevronRight size={20} />

@@ -1,6 +1,6 @@
-// ProductPage.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 import TopNavbar from './TopNavbar';
 import MainNavbar from './MainNavbar';
 import styles from './ProductPage.module.css';
@@ -11,7 +11,6 @@ import ReviewList from './ReviewList';
 import RestaurantsSection from './RestaurantsSection';
 import Footer  from './footer';
 import Cart from './Cart';
-import { CartContext } from '../context/CartContext';
 // Import your assets
 import orderIcon from '../assets/order-icon.png';
 import deliveryIcon from '../assets/delivery-icon.png';
@@ -27,7 +26,16 @@ import addToCartIcon from '../assets/add-to-cart-icon.png';
 const ProductPage = () => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const [foodItems, setFoodItems] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]); // Restored local cart state
+  const [isCartVisible, setIsCartVisible] = useState(false);
+  
+  const { 
+    cart: contextCart, 
+    addToCart: contextAddToCart, 
+    removeFromCart: contextRemoveFromCart, 
+    updateQuantity: contextUpdateQuantity 
+  } = useContext(CartContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -72,11 +80,12 @@ const ProductPage = () => {
     };
     
     fetchFoodItems();
-    
-    
-   
-    
   }, [navigate]);
+
+  useEffect(() => {
+    // Show/hide cart based on cart items
+    setIsCartVisible(cart.length > 0);
+  }, [cart]);
 
   const handleAddToCart = (item) => {
     setCart(prevCart => {
@@ -92,10 +101,12 @@ const ProductPage = () => {
       // If item doesn't exist, add it with quantity 1
       return [...prevCart, {...item, quantity: 1}];
     });
+    contextAddToCart(item); // Also add to context
   };
   
   const handleRemoveFromCart = (itemId) => {
     setCart(prevCart => prevCart.filter(item => item._id !== itemId));
+    contextRemoveFromCart(itemId); // Also remove from context
   };
   
   const handleUpdateQuantity = (itemId, newQuantity) => {
@@ -107,17 +118,29 @@ const ProductPage = () => {
           : item
       )
     );
+    contextUpdateQuantity(itemId, newQuantity); // Also update in context
+  };
+
+
+  const handleCartToggle = () => {
+    if (cart.length > 0) {
+      setIsCartVisible(!isCartVisible);
+    } else {
+      alert("Add items to your cart first!");
+    }
   };
 
   if (!selectedRestaurant) {
     return null;
   }
+
   const burgers = foodItems.filter(item => item.category === 'Burgers');
   const fries = foodItems.filter(item => item.category === 'Fries');
   const coldDrinks = foodItems.filter(item => item.category === 'Cold Drinks');
+
   return (
     <div className={styles.productPage}>
-      <TopNavbar />
+      <TopNavbar onCartToggle={handleCartToggle} />
       <MainNavbar />
 
       <div className={styles.heroSection}>
@@ -174,55 +197,50 @@ const ProductPage = () => {
             <li>Orbit®</li>
           </ul>
         </nav>
-
-        
-        
       </div>
 
       <div className={styles.contentWrapper}>
-    <div className={styles.mainContent}>
-      <div className={`${styles.offersGrid} ${cart.length > 0 ? styles.withCart : ''}`}>
-        <img src={offer1} alt="Offer 1" />
-        <img src={offer2} alt="Offer 2" />
-        <img src={offer3} alt="Offer 3" />
-      </div>
-      
-      <div className={`${styles.foodSectionsWrapper} ${cart.length > 0 ? styles.withCart : ''}`}>
-        <FoodSection 
-          title="Burgers"
-          items={burgers}
-          onAddToCart={handleAddToCart}
-          addToCartIcon={addToCartIcon}
-        />
+        <div className={styles.mainContent}>
+          <div className={`${styles.offersGrid} ${cart.length > 0 ? styles.withCart : ''}`}>
+            <img src={offer1} alt="Offer 1" />
+            <img src={offer2} alt="Offer 2" />
+            <img src={offer3} alt="Offer 3" />
+          </div>
+          
+          <div className={`${styles.foodSectionsWrapper} ${cart.length > 0 ? styles.withCart : ''}`}>
+            <FoodSection 
+              title="Burgers"
+              items={burgers}
+              onAddToCart={handleAddToCart}
+              addToCartIcon={addToCartIcon}
+            />
+            
+            <FoodSection 
+              title="Fries"
+              items={fries}
+              onAddToCart={handleAddToCart}
+              addToCartIcon={addToCartIcon}
+            />
+            
+            <FoodSection 
+              title="Cold Drinks"
+              items={coldDrinks}
+              onAddToCart={handleAddToCart}
+              addToCartIcon={addToCartIcon}
+            />
+          </div>
+        </div>
         
-        <FoodSection 
-          title="Fries"
-          items={fries}
-          onAddToCart={handleAddToCart}
-          addToCartIcon={addToCartIcon}
-        />
-        
-        <FoodSection 
-          title="Cold Drinks"
-          items={coldDrinks}
-          onAddToCart={handleAddToCart}
-          addToCartIcon={addToCartIcon}
-        />
+        {isCartVisible && (
+          <Cart 
+            items={cart}
+            removeFromCart={handleRemoveFromCart}
+            updateQuantity={handleUpdateQuantity}
+          />
+        )}
       </div>
-    </div>
-    
-    {cart.length > 0 && (
-      <Cart 
-        items={cart}
-        removeFromCart={handleRemoveFromCart}
-        updateQuantity={handleUpdateQuantity}
-      />
-    )}
-  </div>
-
 
       <DeliveryInfo />
-
       <RestaurantMap />
       <ReviewList />
       <RestaurantsSection />

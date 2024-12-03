@@ -14,16 +14,16 @@ const UserProfile = () => {
   const [showCardModal, setShowCardModal] = useState(false);
   const [editingCard, setEditingCard] = useState(null);
   const [userData, setUserData] = useState({
-    name: user?.name || '',
-    email: user?.email || '',
+    name: user?.user.name || '',
+    email: user?.user.email || '',
     gender: 'Male',
     country: 'India'
   });
 
   // Initialize with 2 predefined cards using logged-in user's name
   const [savedCards, setSavedCards] = useState([
-    { id: 1, number: 'xxxx xxxx xxxx 1234', name: user?.name || '' },
-    { id: 2, number: 'xxxx xxxx xxxx 5678', name: user?.name || '' }
+    { id: 1, number: 'xxxx xxxx xxxx 1234', name: user?.user.name || '' },
+    { id: 2, number: 'xxxx xxxx xxxx 5678', name: user?.user.name || '' }
   ]);
 
   const handleEdit = () => setIsEditing(true);
@@ -295,7 +295,7 @@ const CardModal = ({ card, onClose, onSave, onRemove, isEditMode }) => {
               name="number"
               value={cardData.number}
               onChange={handleInputChange}
-              placeholder={isEditMode ? "xxxx xxxx xxxx ____" : "Enter card number"}
+              placeholder={isEditMode ? "xxxx xxxx xxxx __" : "Enter card number"}
               maxLength={isEditMode ? 19 : 19}
               className={errors.number ? styles.errorInput : ''}
             />

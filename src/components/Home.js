@@ -23,7 +23,11 @@ import businessPartnerImage from '../assets/businessPartnerImage.png';
 import phone from '../assets/phone.png';
 import cap from '../assets/cap.png';
 import fod from '../assets/fod.png';
-
+import Tick from '../assets/Tick.png';
+import num1 from '../assets/1.png';
+import num2 from '../assets/2.png';
+import num3 from '../assets/3.png';
+import playstore from '../assets/play-store.png';
 const HomePage = () => {
 
   
@@ -46,26 +50,84 @@ const HomePage = () => {
        <TopNavbar />
        <MainNavbar />
 
-      {/* Hero Section */}
-      <div className={styles.heroSection}>
-        <div className={styles.heroContent}>
-          <div className={styles.heroLeft}>
-            <p className={styles.heroSubtitle}>Order Restaurant food, takeaway and groceries.</p>
-            <h1 className={styles.heroTitle}>Feast Your Senses,</h1>
-            <h2 className={styles.heroTitleYellow}>Fast and Fresh</h2>
-            <div className={styles.searchBar}>
-            <img src={lol} alt="lol" className={styles.storelol} />
+     {/* Hero Section */}
+<div className={styles.heroSection}>
+  <div className={styles.heroContent}>
+    <div className={styles.heroLeft}>
+      <p className={styles.heroSubtitle}>Order Restaurant food, takeaway and groceries.</p>
+      <h1 className={styles.heroTitle}>Feast Your Senses,</h1>
+      <h2 className={styles.heroTitleYellow}>Fast and Fresh</h2>
+      <div className={styles.searchContainer}>
+  <span className={styles.searchLabel}>Enter a postcode to see what we deliver</span>
+  <div className={styles.searchBar}>
+    
+    <input 
+      type="text" 
+      placeholder="e.g. EC4R3TE" 
+      className={styles.searchInput}
+    />
+    <button className={styles.searchButton}>Search</button>
+  </div>
+</div>
+    </div>
+    <div className={styles.heroRight}>
+      <div className={styles.imageContainer}>
+        <img src={wpizza} alt="Woman eating pizza" className={styles.mainImage} />
+        <img src={wnoodle} alt="Woman eating noodles" className={styles.secondaryImage} />
+        
+        {/* Order Status Boxes */}
+        <div className={styles.statusBoxesContainer}>
+          {/* Box 1 */}
+          <div className={styles.statusBox1}>
+            <img src={num1} alt="1" className={styles.numberImage} />
+            <div className={styles.statusBox}>
+              <div className={styles.statusHeader}>
+                <img src={applogo} alt="Order" className={styles.orderIcon} />
+                <span className={styles.timeText}>now</span>
+              </div>
+              <div className={styles.statusTitle}>We've Received your order!</div>
+              <p className={styles.statusDescription}>Awaiting Restaurant acceptance</p>
             </div>
           </div>
-          <div className={styles.heroRight}>
-            <div className={styles.imageContainer}>
-              <img src={wpizza} alt="Woman eating pizza" className={styles.mainImage} />
-              <img src={wnoodle} alt="Woman eating noodles" className={styles.secondaryImage} />
-              <div className={styles.orangeCircle}></div>
+
+          {/* Box 2 */}
+          <div className={styles.statusBox2}>
+            <img src={num2} alt="2" className={styles.numberImage} />
+            <div className={styles.statusBox}>
+              <div className={styles.statusHeader}>
+                <img src={applogo} alt="Order" className={styles.orderIcon} />
+                <span className={styles.timeText}>now</span>
+              </div>
+              <div className={styles.statusTitle}>
+                Order Accepted!
+                <img src={Tick} alt="Accepted" className={styles.tickIcon} />
+              </div>
+              <p className={styles.statusDescription}>Your order will be delivered shortly</p>
+            </div>
+          </div>
+
+          {/* Box 3 */}
+          <div className={styles.statusBox3}>
+            <img src={num3} alt="3" className={styles.numberImage} />
+            <div className={styles.statusBox}>
+              <div className={styles.statusHeader}>
+                <img src={applogo} alt="Order" className={styles.orderIcon} />
+                <span className={styles.timeText}>now</span>
+              </div>
+              <div className={styles.statusTitle}>
+                Your rider's nearby
+                <span role="img" aria-label="celebration">🎉</span>
+              </div>
+              <p className={styles.statusDescription}>They're almost there – get ready!</p>
             </div>
           </div>
         </div>
+
+        <div className={styles.orangeCircle}></div>
       </div>
+    </div>
+  </div>
+</div>
 
       {/* Deals Section */}
       <div className={styles.dealsSection}>
@@ -122,8 +184,8 @@ const HomePage = () => {
                 Download the Order.uk app for faster ordering
               </div>
               <div className={styles.storeButtons}>
-                <img src="/app-store.png" alt="App Store" />
-                <img src="/play-store.png" alt="Play Store" />
+                <img src={playstore} alt="App Store" />
+                
               </div>
             </div>
           </div>
@@ -144,77 +206,82 @@ const HomePage = () => {
         />
       </div>
 
-      {/* Know More Section */}
-      <div className={styles.knowMoreSection}>
-        <div className={styles.knowMoreHeader}>
-          <h2>Know more about us!</h2>
-          <div className={styles.navTabs}>
-            <button className={`${styles.tab} ${styles.active}`}>Frequent Questions</button>
-            <button className={styles.tab}>Who we are?</button>
-            <button className={styles.tab}>Partner Program</button>
-            <button className={styles.tab}>Help & Support</button>
-          </div>
-        </div>
+    {/* Know More Section */}
+<div className={styles.knowMoreSection}>
+  <div className={styles.knowMoreHeader}>
+    <h2>Know more about us!</h2>
+    <div className={styles.navTabs}>
+      <button className={`${styles.tab} ${styles.active}`}>Frequent Questions</button>
+      <button className={styles.tab}>Who we are?</button>
+      <button className={styles.tab}>Partner Program</button>
+      <button className={styles.tab}>Help & Support</button>
+    </div>
+  </div>
 
-        <div className={styles.knowMoreContent}>
-          <div className={styles.faqSection}>
-            <button className={`${styles.faqButton} ${styles.active}`}>How does Order.uk work?</button>
-            <button className={styles.faqButton}>What payment methods are accepted?</button>
-            <button className={styles.faqButton}>Can I track my order in real-time?</button>
-            <button className={styles.faqButton}>Are there any special discounts or promotions available?</button>
-            <button className={styles.faqButton}>Is Order.UK available in my area?</button>
-          </div>
-          
-          <div className={styles.infoCards}>
-            <div className={styles.infoCard}>
-              <h3>Place an Order!</h3>
-              <div className={styles.iconCircle}><img src={cap} alt="Food" className={styles.capimg} /></div>
-              <p>Place order through our website or Mobile app</p>
-            </div>
-            
-            <div className={styles.infoCard}>
-              <h3>Track Progress</h3>
-              <div className={styles.iconCircle}><img src={fod} alt="Food" className={styles.fodimg} /></div>
-              <p>You can track your order status with delivery time</p>
-            </div>
-            
-            <div className={styles.infoCard}>
-              <h3>Get your Order!</h3>
-              <div className={styles.iconCircle}><img src={phone} alt="Food" className={styles.phoneimg} /></div>
-              <p>Receive your order at a lightning fast speed!</p>
-            </div>
-          </div>
-        </div>
-        
-        <p className={styles.processDescription}>
-          Order.UK simplifies the food ordering process. Browse through our diverse menu, 
-          select your favorite dishes, and proceed to checkout. Your delicious meal will be 
-          on its way to your doorstep in no time!
-        </p>
+  <div className={styles.knowMoreContent}>
+    <div className={styles.faqSection}>
+      <button className={`${styles.faqButton} ${styles.active}`}>How does Order.uk work?</button>
+      <button className={styles.faqButton}>What payment methods are accepted?</button>
+      <button className={styles.faqButton}>Can I track my order in real-time?</button>
+      <button className={styles.faqButton}>Are there any special discounts or promotions available?</button>
+      <button className={styles.faqButton}>Is Order.UK available in my area?</button>
+    </div>
+
+    <div className={styles.infoCards}>
+      <div className={styles.infoCard}>
+        <h3>Place an Order!</h3>
+        <div className={styles.iconCircle}><img src={cap} alt="Food" className={styles.capimg} /></div>
+        <p>Place order through our website or Mobile app</p>
       </div>
+
+      <div className={styles.infoCard}>
+        <h3>Track Progress</h3>
+        <div className={styles.iconCircle}><img src={fod} alt="Food" className={styles.fodimg} /></div>
+        <p>You can track your order status with delivery time</p>
+      </div>
+
+      <div className={styles.infoCard}>
+        <h3>Get your Order!</h3>
+        <div className={styles.iconCircle}><img src={phone} alt="Food" className={styles.phoneimg} /></div>
+        <p>Receive your order at a lightning-fast speed!</p>
+      </div>
+
+      {/* Place description here */}
+      <p className={styles.processDescription}>
+        Order.UK simplifies the food ordering process. Browse through our diverse menu, 
+        select your favorite dishes, and proceed to checkout. Your delicious meal will be 
+        on its way to your doorstep in no time!
+      </p>
+    </div>
+  </div>
+</div>
+
 
       {/* Stats Bar */}
       <div className={styles.statsBar}>
-        <div className={styles.statsContent}>
-          <div className={styles.statItem}>
-            <div className={styles.statNumber}>546+</div>
-            <div className={styles.statLabel}>Registered Riders</div>
-          </div>
-          
-          <div className={styles.statItem}>
-            <div className={styles.statNumber}>789,900+</div>
-            <div className={styles.statLabel}>Orders Delivered</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statNumber}>690+</div>
-            <div className={styles.statLabel}>Restaurants Partnered</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statNumber}>17,457+</div>
-            <div className={styles.statLabel}>Food Items</div>
-          </div>
-        </div>
-      </div>
+  <div className={styles.statsContent}>
+    <div className={styles.statItem}>
+      <div className={styles.statNumber}>546+</div>
+      <div className={styles.statLabel}>Registered Riders</div>
+    </div>
+    
+    <div className={styles.statItem}>
+      <div className={styles.statNumber}>789,900+</div>
+      <div className={styles.statLabel}>Orders Delivered</div>
+    </div>
+    
+    <div className={styles.statItem}>
+      <div className={styles.statNumber}>690+</div>
+      <div className={styles.statLabel}>Restaurants Partnered</div>
+    </div>
+    
+    <div className={styles.statItem}>
+      <div className={styles.statNumber}>17,457+</div>
+      <div className={styles.statLabel}>Food Items</div>
+    </div>
+  </div>
+</div>
+
       <Footer />
     </div>
   );

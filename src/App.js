@@ -8,6 +8,7 @@ import CheckoutPage from './components/CheckoutPage';
 import { CartProvider } from './context/CartContext';
 import PaymentPage from './components/PaymentPage';
 import UserProfile from './components/UserProfile';
+import SharedCart from './components/SharedCart';
 function App() {
   return (
     
@@ -21,7 +22,7 @@ function App() {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/product" element={<ProductPage />} />
             <Route path="/checkout" element={<CheckoutPage/>} />
-            <Route path="/shared-cart/:cartId" element={<CheckoutPage />} />
+            <Route path="/shared-cart/:cartId" element={<SharedCart />} />
             <Route path="/payment" element={<PaymentPage />} />
           </Routes>
         </div>

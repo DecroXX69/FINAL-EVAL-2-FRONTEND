@@ -1,12 +1,18 @@
-// components/TopNavbar.js
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './NavbarStyles.module.css';
 import gift from '../assets/gift.png';
 import location from '../assets/Location.png';
 import basket from '../assets/basket.png';
 import down from '../assets/down.png';
 
-const TopNavbar = () => {
+const TopNavbar = ({ onCartToggle }) => {
+  const [isCartVisible, setIsCartVisible] = useState(false);
+
+  const handleCartToggle = () => {
+    setIsCartVisible(!isCartVisible);
+    onCartToggle(); // Notify parent component about cart toggle
+  };
+
   return (
     <div className={styles.topNav}>
       <div className={styles.topNavContent}>
@@ -19,11 +25,18 @@ const TopNavbar = () => {
             <a href="#" className={styles.changeLocation}>Change Location</a>
           </div>
         </div>
-        <div className={styles.cartButton}>
-          <img src={basket} alt="basket" className={styles.storeLogo} />
-          <span>My Cart</span>
-          <span className={styles.divider}></span>
-          <span><img src={down} alt="down" className={styles.storeLogo} /></span>
+        <div 
+          className={styles.cartButton} 
+          onClick={handleCartToggle}
+        >
+          <div>
+            <img src={basket} alt="basket" className={styles.cartLogo} />
+            <span>My Cart</span>
+          </div>
+          <div className={styles.divider}></div>
+          <div>
+            <img src={down} alt="down" />
+          </div>
         </div>
       </div>
     </div>

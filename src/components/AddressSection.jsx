@@ -1,44 +1,123 @@
-// AddressSection.js
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import AddressModal from './AddressModal';
-import styles from './AddressSection.module.css'; 
+import styles from './AddressSection.module.css';
 import { ArrowLeft } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
 const AddressSection = ({ onBack }) => {
   const [showModal, setShowModal] = useState(false);
   const [addresses, setAddresses] = useState([]);
   const [editingAddress, setEditingAddress] = useState(null);
-  const { user } = useContext(AuthContext);
-  const handleAddAddress = (address) => {
-    if (editingAddress !== null) {
-      setAddresses(addresses.map((addr, index) => 
-        index === editingAddress ? { ...address, name: user.name } : addr
-      ));
-      setEditingAddress(null);
-    } else {
-      setAddresses([...addresses, { ...address, name: user.name }]);
+  const { user } = useContext(AuthContext); // Assuming user has _id property
+  const navigate = useNavigate();
+
+  // Fetch addresses when the component loads
+  useEffect(() => {
+    //console.log('User from AuthContext:', user);
+    const fetchAddresses = async () => {
+      const token = localStorage.getItem('token');
+      try {
+        console.log('User ID:', user ? user.user.id : 'No ID'); // Replace .id with ._id if using that
+        console.log('User from AuthContext:', user);
+        const response = await fetch(`http://localhost:5000/api/users/${user.user.id}/addresses`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        if (data.success) {
+          setAddresses(data.addresses);
+        } else {
+          console.error('Failed to fetch addresses:', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching addresses:', error);
+      }
+    };
+    fetchAddresses();
+  }, [user]);
+
+  const handleNavigateToCheckout = (address) => {
+    navigate('/checkout', { state: { selectedAddress: address } });
+  };
+
+  // Add or update an address
+  const handleAddAddress = async (address) => {
+    const token = localStorage.getItem('token');
+    try {
+      let url = `http://localhost:5000/api/users/${user.user.id}/addresses`;
+      let method = 'POST';
+
+      if (editingAddress !== null) {
+        url += `/${addresses[editingAddress]._id}`;
+        method = 'PUT';
+      }
+
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+         },
+        body: JSON.stringify(address),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setAddresses(data.addresses);
+        setShowModal(false);
+        setEditingAddress(null);
+      } else {
+        console.error('Failed to save address:', data.message);
+      }
+    } catch (error) {
+      console.error('Error saving address:', error);
     }
   };
 
+  // Remove an address
+  const handleRemove = async (index) => {
+    const token = localStorage.getItem('token');
+    try {
+      const addressId = addresses[index]._id;
+      console.log(addressId);
+      const response = await fetch(`http://localhost:5000/api/users/${user.user.id}/addresses/${addressId}`, {
+        method: 'DELETE',
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+         },
+      });
 
+      const data = await response.json();
+      if (data.success) {
+        setAddresses(data.addresses);
+      } else {
+        console.error('Failed to delete address:', data.message);
+      }
+    } catch (error) {
+      console.error('Error deleting address:', error);
+    }
+  };
+
+  // Edit an address
   const handleEdit = (index) => {
     setEditingAddress(index);
     setShowModal(true);
   };
 
-  const handleRemove = (index) => {
-    setAddresses(addresses.filter((_, i) => i !== index));
-  };
-
   return (
     <div className={styles.addressContainer}>
+      {/* Header */}
       <div className={styles.addressHeader}>
         <button className={styles.backButton} onClick={onBack}>
           <ArrowLeft size={24} />
         </button>
         <h2>Your Addresses</h2>
       </div>
-      
+
+      {/* Address List */}
       <div className={styles.addressGrid}>
         <div className={styles.addAddressCard} onClick={() => setShowModal(true)}>
           <div className={styles.plusIconWrapper}>
@@ -46,9 +125,13 @@ const AddressSection = ({ onBack }) => {
           </div>
           <span>Add Address</span>
         </div>
-        
+
         {addresses.map((address, index) => (
-          <div key={index} className={styles.addressCard}>
+          <div key={address._id} className={styles.addressCard} onClick={() => {
+            console.log('Address clicked:', address);  // Log address details when clicked
+            handleNavigateToCheckout(address);
+          }}
+          >
             {index === 0 && <span className={styles.defaultTag}>Default</span>}
             <h3>{address.name}</h3>
             <p>{address.fullAddress}</p>
@@ -56,11 +139,13 @@ const AddressSection = ({ onBack }) => {
             <div className={styles.addressActions}>
               <button onClick={() => handleEdit(index)}>Edit</button>
               <button onClick={() => handleRemove(index)}>Remove</button>
+              
             </div>
           </div>
         ))}
       </div>
 
+      {/* Address Modal */}
       {showModal && (
         <AddressModal
           onClose={() => {
@@ -74,6 +159,5 @@ const AddressSection = ({ onBack }) => {
     </div>
   );
 };
-
 
 export default AddressSection;

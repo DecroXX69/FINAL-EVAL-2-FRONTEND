@@ -1,97 +1,154 @@
 /* components/NavbarStyles.module.css */
 /* Top Navbar Styles */
 .topNav {
-    background-color: rgba(250, 250, 250, 1);
-    border-bottom: 1px solid #eee;
-  }
-  
-  .topNavContent {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .leftContent {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .promoText {
-    font-size: 0.875rem;
-  }
-  
-  .location {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    margin-left: 220px;
-  }
-  
-  .changeLocation {
-    color: #f97316;
-    text-decoration: none;
-  }
-  
-  .cartButton {
-    background-color: #16a34a;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .divider {
-    width: 1px;
-    height: 1rem;
-    background-color: white;
-    margin: 0 0.5rem;
-  }
- /* Main Navbar Styles */
+  background-color: #fafafa;
+  border: 1px solid #eee;
+  width: calc(100% - 120px);
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.topNavContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch; /* Changed to stretch to make cart button full height */
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.leftContent {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+  margin-left: 20px;
+}
+
+.promoText {
+  font-size: 0.875rem;
+  color: #fc8a06;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  margin-left: 260px;
+}
+
+.changeLocation {
+  color: #f97316;
+  text-decoration: underline;
+  margin-left: 8px;
+}
+
+.cartButton {
+  background-color: #16a34a;
+  color: white;
+  display: flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 0;
+  margin: -8px 0 -8px -8px; /* Negative margins to extend to edges */
+}
+
+/* Left section of cart button */
+.cartButton > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Small gap between cart icon and text */
+  padding: 12px 24px;
+}
+
+/* Divider styling */
+.divider {
+  width: 1px;
+  height: 65px;
+  background-color: rgba(255, 255, 255, 0.4);
+  margin: 0 24px;
  
-  
-  .mainNavContent {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo img {
-    height: 2.5rem;
-  }
-  
-  .navLinks {
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  .navButton {
-    padding: 0.5rem 1rem;
-    border: none;
-    background: none;
-    cursor: pointer;
-    border-radius: 1.5rem;
-    font-size: 0.875rem;
-  }
-  
-  .navButton.active {
-    background-color: orange;
-    color: white;
-  }
-  
-  .loginButton {
-    background-color: black;
-    color: white;
-  }
+}
+
+/* Down arrow container */
+.cartButton > div:last-child {
+  padding: 12px 16px;
+}
+
+.storeLogo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.cartLogo{
+  width: 40px;
+  height: 40px;
+}
+ /* Main Navbar Styles */
+.mainNav {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.mainNavContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo img {
+  height: 2.5rem;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 1.5rem;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+}
+
+.navButton.active {
+  background-color: orange;
+  color: white;
+}
+
+.loginButton {
+  background-color: black;
+  color: white;
+}
+
+.userProfileButton {
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.userProfileImage {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
   
   /* Popular Restaurants Styles */
   .restaurantsSection {
@@ -104,6 +161,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .restaurantsGrid {

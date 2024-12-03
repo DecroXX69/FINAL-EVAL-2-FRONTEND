@@ -3,6 +3,40 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import styles from './RestaurantMap.module.css';
+import RouterIcon from '../assets/marker-icon.png'; // Update this import path
+
+const CustomMarkerIcon = () => {
+  return L.divIcon({
+    className: styles['custom-marker-icon'],
+    html: `
+      <div class="${styles.markerContainer}">
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <circle 
+            cx="20" 
+            cy="20" 
+            r="20" 
+            fill="#03081F" 
+            
+          />
+        </svg>
+        <img 
+          src="${RouterIcon}" 
+          alt="Router Icon" 
+          style="
+            position: absolute; 
+            width: 25px; 
+            height: 25px; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+          "
+        />
+      </div>
+    `,
+    iconSize: [40, 40],
+    iconAnchor: [20, 20],
+  });
+};
 
 const RestaurantMap = () => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
@@ -12,13 +46,6 @@ const RestaurantMap = () => {
     const restaurantData = JSON.parse(localStorage.getItem('selectedRestaurant'));
     setSelectedRestaurant(restaurantData);
   }, []);
-
-  // Define the icon for the marker
-  const markerIcon = L.icon({
-    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-  });
 
   // Create the Google Street View layer
   const googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
@@ -67,7 +94,10 @@ const RestaurantMap = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {selectedRestaurant && (
-          <Marker position={[51.5074, -0.1278]} icon={markerIcon}>
+          <Marker 
+            position={[51.5074, -0.1278]} 
+            icon={CustomMarkerIcon()}
+          >
             <Popup>
               {selectedRestaurant.name}
             </Popup>

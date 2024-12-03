@@ -1,201 +1,212 @@
-.container {
-    min-height: 100vh;
-    background-color: white;
-  }
-  
-  /* Top Navbar Styles */
-  .topNav {
-    background-color: rgba(250, 250, 250, 1);
-    border-bottom: 1px solid #eee;
-  }
-  
-  .topNavContent {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .leftContent {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .promoText {
-    font-size: 0.875rem;
-  }
-  
-  .location {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    margin-left: 220px;
-  }
-  
-  .changeLocation {
-    color: #f97316;
-    text-decoration: none;
-  }
-  
-  .cartButton {
-    background-color: #16a34a;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .divider {
-    width: 1px;
-    height: 1rem;
-    background-color: white;
-    margin: 0 0.5rem;
-  }
-  
-  /* Main Navbar Styles */
-  .mainNav {
-    border-bottom: 1px solid #eee;
-  }
-  
-  .mainNavContent {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo img {
-    height: 2.5rem;
-  }
-  
-  .navLinks {
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  .navButton {
-    padding: 0.5rem 1rem;
-    border: none;
-    background: none;
-    cursor: pointer;
-    border-radius: 1.5rem;
-    font-size: 0.875rem;
-  }
-  
-  .navButton.active {
-    background-color: orange;
-    color: white;
-  }
-  
-  .loginButton {
-    background-color: black;
-    color: white;
-  }
-  
-  /* Hero Section Styles */
-  .heroSection {
-    max-width: 1400px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-  }
-  
-  .heroContent {
-    background-color: rgba(251, 251, 251, 1);
-    border-radius: 0.75rem;
-    padding: 2rem;
-    display: flex;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .heroLeft {
-    width: 50%;
-    z-index: 1;
-  }
-  
-  .heroSubtitle {
-    font-size: 1.125rem;
-    margin-bottom: 1rem;
-  }
-  
-  .heroTitle {
-    font-size: 2.25rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .heroTitleYellow {
-    font-size: 2.25rem;
-    font-weight: bold;
-    color: #facc15;
-    margin-bottom: 1.5rem;
-  }
-  
-  .searchBar {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    max-width: 24rem;
-  }
-  
-  .searchBar input {
-    margin-left: 0.5rem;
-    width: 100%;
-    border: none;
-    outline: none;
-  }
-  
-  .heroRight {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 50%;
-  }
-  
-  .imageContainer {
-    position: relative;
-    height: 100%;
-  }
-  
-  .mainImage {
-    position: absolute;
-    top: 55%;
-    left: 5%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 550px;
-  }
-  
-  .secondaryImage {
-    position: absolute;
+/* Hero Section Styles */
+.heroSection {
+  max-width: 1400px;
+  margin: 2rem auto;
+ 
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.heroContent {
+  background-color: rgba(251, 251, 251, 1);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  min-height: 550px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.heroLeft {
+  width: 50%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 0.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1rem;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 0.125rem;
+  line-height: 1.1;
+}
+
+.heroTitleYellow {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #facc15;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.searchBar {
+  display: flex;
+  align-items: stretch;
+  background-color: white;
+  border-radius: 2rem;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.searchInput {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.searchButton {
+  background-color: #fb923c;
+  color: white;
+  padding: 0.75rem 2.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  white-space: nowrap;
+  border-radius: 30px;
+}
+
+.heroRight {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 50%;
+}
+
+.imageContainer {
+  position: relative;
+  height: 100%;
+}
+
+.mainImage {
+  position: absolute;
     bottom: 0;
-    right: 310px;
-    z-index: 1;
-    width: 250px;
-    
-  }
+    left: -59%;
+    z-index: 2;
+    width: 740px;
+    height: auto;
+}
+
+.secondaryImage {
+  position: absolute;
+  bottom: 0;
+  right: 240px;
+  z-index: 1;
+  width: 350px;
+  height: auto;
+}
+
+.orangeCircle {
+  position: absolute;
+  top: 10rem;
+  right: 0;
+  width: 100%;
+  height: 85%;
+  background-color: #fb923c;
+  border-radius: 35%;
+  transform: scale(1.5) translateX(30%);
+}
+
+/* Status Boxes Styles */
+.statusBoxesContainer {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.numberImage {
+  width: 2rem;
+  height: 2rem;
   
-  .orangeCircle {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fb923c;
-    border-radius: 50%;
-    transform: scale(1.5) translateX(25%);
-  }
+  position: relative;
+  left: 236px;
+}
+
+.statusBox {
+  background-color: white;
+    border-radius: 0.75rem;
+    padding: 0.2rem 0.2rem;
+    width: 18rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+/* Positioning for individual boxes */
+.statusBoxesContainer > div:nth-child(1) {
+  transform: translateX(-2rem);
+}
+
+.statusBoxesContainer > div:nth-child(2) {
+  transform: translateX(1rem);
+}
+
+.statusBoxesContainer > div:nth-child(3) {
+  transform: translateX(-1.5rem);
+}
+
+.statusHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.orderIcon {
+  width: 4.25rem;
+    height: 1rem;
+}
+
+.timeText {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.statusTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.statusDescription {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.tickIcon {
+  width: 1rem;
+  height: 1rem;
+}
+  
+  
   
   /* Deals Section Styles */
   .dealsSection {
@@ -209,6 +220,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .dealsSectionHeader h2 {
@@ -223,15 +235,16 @@
   
   .categoryFilters button {
     padding: 0.5rem 1rem;
-    border: 1px solid #e5e7eb;
+    border: none;
     border-radius: 9999px;
     background: none;
     cursor: pointer;
+    color: #6b7280; /* Gray-500 */
   }
   
   .categoryFilters button.active {
-    background-color: #fff7ed;
-    border-color: #fb923c;
+    border: 1px solid #fb923c; /* Orange-400 */
+    color: #fb923c; /* Orange-400 */
   }
   
   .dealsGrid {
@@ -257,6 +270,7 @@
   max-width: 1400px;
   margin: 2rem auto;
   padding: 0 1rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 .categoriesSection h2 {
@@ -279,9 +293,9 @@
 .categoryImageContainer {
   width: 100%;
   aspect-ratio: 1;
-  border-radius: 0.75rem;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
   overflow: hidden;
-  margin-bottom: 0.5rem;
 }
 
 .categoryImageContainer img {
@@ -292,19 +306,24 @@
 
 .categoryInfo {
   background: rgba(245, 245, 245, 1);
-  padding: 0.75rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50px; /* Reduced height */
 }
 
 .categoryInfo h3 {
   font-weight: 600;
   font-size: 0.875rem;
-  margin-bottom: 0.25rem;
+  margin: 0;
 }
 
 .categoryInfo p {
   font-size: 0.75rem;
   color: #f97316;
+  margin: 0;
 }
 
 /* Popular Restaurants Styles */
@@ -351,14 +370,12 @@
   .bigpic{
     width: 400px;
   }
-
   .downloadSection {
     background: linear-gradient(180deg, #EEEEEE 0%, #E0E1DC 100%);
     max-width: 1400px;
     margin: 2rem auto;
-    padding: 2rem;
+    padding: 3rem;
     border-radius: 10px;
-    height: auto;
     position: relative;
     overflow: hidden;
   }
@@ -375,42 +392,44 @@
   }
   
   .coupleImage {
-    width: 450px;
-    height: 350px;
-    object-fit: cover;
+    width: 590px;
+    height: 429px;
     position: absolute;
-    left: -20px;
+    left: -50px;
     bottom: -32px;
     z-index: 2;
   }
   
   .coupleImage2 {
-    width: 450px;
-    height: 350px;
-    object-fit: cover;
+    width: 550px;
+    height: 400px;
+    
     position: absolute;
-    left: -70px;
+    left: -100px;
     bottom: -32px;
     opacity: 0.2;
     z-index: 1;
   }
   
   .downloadText {
-    margin-left: 400px;
+    margin-left: 447px;
     padding-top: 1rem;
-    z-index: 3;
+    z-index: 1;
+    width: 50%;
   }
   
   .appTitle {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 30px;
   }
   
   .appTitle img {
-    height: 2.5rem;
+    height: 3rem;
   }
   
   .highlight {
@@ -420,11 +439,14 @@
   .personalizedBar {
     background: black;
     color: white;
-    padding: 0.75rem 2rem;
-    border-radius: 24px;
-    margin-top: 1rem;
-    font-size: 1.5rem;
+    padding: 0.2rem 2rem;
+    border-radius: 30px;
+    margin-top: 1.5rem;
+    font-size: 1.8rem;
     display: inline-block;
+    width: 93%;
+    text-align: right;
+    font-family: 'Poppins', sans-serif;
   }
   
   .personalized {
@@ -433,17 +455,20 @@
   }
   
   .downloadInfo {
-    font-size: 1rem;
-    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    margin-top: 2rem;
     color: #666;
+    font-family: 'Poppins', sans-serif;
   }
   
   .storeButtons {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+    text-align: right;
+    font-family: 'Poppins', sans-serif;
   }
   
   .storeButtons img {
-    height: 40px;
+    height: 50px;
   }
   
   /* Partner Cards Section */
@@ -462,159 +487,165 @@
   aspect-ratio: 16/9;
   object-fit: cover;
 }
-  /* Know More Section */
-  
-  .knowMoreSection {
-    max-width: 1400px;
-    margin: 3rem auto;
-    background: #f5f5f5;
-    border-radius: 10px;
-    padding: 2rem;
-  }
-  
-  .knowMoreHeader {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .knowMoreHeader h2 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-  }
-  
-  .navTabs {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  .tab {
-    padding: 0.75rem 1.5rem;
-    border: 1px solid transparent;
-    border-radius: 25px;
-    background: none;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  .tab.active {
-    background: white;
-    border-color: #ff6b00;
-    color: #ff6b00;
-    font-weight: 600;
-  }
-  
-  .knowMoreContent {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 2rem;
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-  }
-  
-  .faqSection {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .faqButton {
-    text-align: left;
-    padding: 1rem;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: 8px;
-    transition: all 0.2s;
-  }
-  
-  .faqButton.active {
-    background: #ff6b00;
-    color: white;
-    font-weight: 600;
-  }
-  
-  .infoCards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-  
-  .infoCard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 1rem;
-    text-align: center;
-    background: #f8f8f8;
-    border-radius: 10px;
-  }
-  
-  .infoCard h3 {
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-  }
-  
-  .iconCircle {
-    margin: 1.5rem 0;
-  }
-  
-  .processDescription {
-    text-align: center;
-    max-width: 800px;
-    margin: 2rem auto 0;
-    line-height: 1.6;
-    color: #666;
-  }
-  
-  
-  /* Stats Bar */
-  .statsBar {
-    background: #ff6b00;
-    color: white;
-    max-width: 1400px;
-    margin: 3rem auto;
-    padding: 2rem 1rem;
-    border-radius: 10px;
-  }
-  
-  .statsContent {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    text-align: center;
-    position: relative;
-  }
-  
-  .statsContent > div:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 50%;
-    background: rgba(255, 255, 255, 0.3);
-  }
-  
-  .statItem {
-    padding: 1rem;
-  }
-  
-  .statNumber {
-    font-size: 2.5rem;
-    font-weight: 300;
-    margin-bottom: 0.5rem;
-  }
-  
-  .statLabel {
-    font-size: 1rem;
-    font-weight: 600;
-  }
+/* Know More Section */
+.knowMoreSection {
+  max-width: 1400px;
+  margin: 3rem auto;
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.knowMoreHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.knowMoreHeader h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.navTabs {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.tab {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 25px;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #666;
+}
+
+.tab.active {
+  border-color: #ff6b00;
+  color: #000; /* Set the text color to black for the active tab */
+  font-weight: 600;
+}
+
+.knowMoreContent {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  position: relative; /* Added for positioning */
+}
+
+.faqSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.faqButton {
+  text-align: center;
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+  border-radius: 30px;
+  background-color: white;
+  font-weight: 600;
+}
+
+.faqButton.active {
+  background: #ff6b00;
+  color: black;
+  font-weight: 600;
+  border-radius: 30px;
+}
+
+.infoCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.infoCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  background: #d9d9d9;
+  border-radius: 10px;
+}
+
+.infoCard h3 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.iconCircle {
+  margin: 0.75rem 0;
+}
+
+.processDescription {
+  grid-column: 1 / -1; /* Span across all columns of infoCards */
+  margin-top: 2rem;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #666;
+}
+ /* Stats Bar */
+.statsBar {
+  background: #fc8a06;
+  color: white;
+  max-width: 1400px;
+  margin: 3rem auto;
+  padding: 1.5rem 1rem; /* Reduced padding for smaller vertical size */
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.statsContent {
+  display: flex; /* Use flex for better control */
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.statItem {
+  flex: 1;
+  padding: 0.8rem; /* Reduced padding for smaller height */
+  position: relative; /* Needed for dividers */
+}
+
+.statNumber {
+  font-size: 2.2rem; /* Adjusted font size slightly */
+  font-weight: 300;
+  margin-bottom: 0.3rem;
+}
+
+.statLabel {
+  font-size: 1.2rem; /* Reduced font size for compact look */
+  font-weight: 600;
+}
+
+/* Dividers between items */
+.statItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%; /* Start slightly below the top */
+  transform: translateY(0); /* Remove vertical centering */
+  height: 60%; /* Increased height for bigger dividers */
+  width: 2px; /* Increased width for visibility */
+  background: rgba(255, 255, 255, 0.5); /* Slightly more opaque */
+}
+
   
   /* Responsive Design */
   @media (max-width: 1024px) {
