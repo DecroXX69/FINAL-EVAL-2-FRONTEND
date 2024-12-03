@@ -11,7 +11,7 @@ import snapchatIcon from '../assets/Snapchat.png';
 const Footer = () => {
   return (
     <footer className={styles.footerContainer}>
-      {/* Grey Section */}
+      
       <div className={styles.greySection}>
         <div className={styles.leftSection}>
             <img src={applogo} alt="Play Store Logo" className={styles.storeLogo} />
@@ -61,7 +61,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      {/* Navy Blue Section */}
+     
       <div className={styles.blueSection}>
         <p>Order.uk Copyright 2024, All Rights Reserved.</p>
         <div className={styles.smallLinks}>

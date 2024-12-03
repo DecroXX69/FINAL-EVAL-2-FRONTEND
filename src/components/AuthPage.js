@@ -44,12 +44,12 @@ const AuthPage = () => {
         });
         
         if (response.data && response.data.token) {
-          // Login the user with the complete response data
+         
           login(response.data);
           
-          // Handle navigation after successful login
+          
           alert('Login Successful!');
-          // Wrap navigation in a setTimeout to ensure state updates complete
+          
           setTimeout(() => {
             navigate('/home');
           }, 0);

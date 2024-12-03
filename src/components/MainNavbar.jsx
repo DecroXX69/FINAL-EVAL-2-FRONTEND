@@ -15,7 +15,7 @@ const MainNavbar = () => {
     navigate('/profile');
   };
 
-  // Updated route handling for active state
+  
   const isActiveButton = (route) => {
     const nonHighlightedRoutes = [
       '/payment', 
@@ -24,7 +24,7 @@ const MainNavbar = () => {
       '/profile'
     ];
 
-    // Check if current path matches any non-highlighted routes
+    
     const isNonHighlightedRoute = nonHighlightedRoutes.some(r => 
       location.pathname.startsWith(r)
     );
@@ -33,7 +33,7 @@ const MainNavbar = () => {
       return false;
     }
 
-    // Handle specific route matches
+    
     switch (route) {
       case 'home':
         return location.pathname === '/home';

@@ -21,9 +21,9 @@ const RestaurantsSection = () => {
   ];
 
   const handleRestaurantClick = (restaurant) => {
-    // Store selected restaurant info in localStorage or state management solution
+    
     localStorage.setItem('selectedRestaurant', JSON.stringify(restaurant));
-    // Navigate to product page
+    
     navigate('/product');
   };
 

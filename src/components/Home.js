@@ -32,7 +32,7 @@ const HomePage = () => {
 
   
 
-  // Sample data for food categories
+  
   const categories = [
     { name: "Burgers & Fast food", restaurants: "21 Restaurants", image: burger },
     { name: "Salads", restaurants: "32 Restaurants", image: salad },
@@ -50,7 +50,7 @@ const HomePage = () => {
        <TopNavbar />
        <MainNavbar />
 
-     {/* Hero Section */}
+     
 <div className={styles.heroSection}>
   <div className={styles.heroContent}>
     <div className={styles.heroLeft}>
@@ -75,9 +75,9 @@ const HomePage = () => {
         <img src={wpizza} alt="Woman eating pizza" className={styles.mainImage} />
         <img src={wnoodle} alt="Woman eating noodles" className={styles.secondaryImage} />
         
-        {/* Order Status Boxes */}
+        
         <div className={styles.statusBoxesContainer}>
-          {/* Box 1 */}
+          
           <div className={styles.statusBox1}>
             <img src={num1} alt="1" className={styles.numberImage} />
             <div className={styles.statusBox}>
@@ -90,7 +90,7 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Box 2 */}
+         
           <div className={styles.statusBox2}>
             <img src={num2} alt="2" className={styles.numberImage} />
             <div className={styles.statusBox}>
@@ -106,7 +106,7 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Box 3 */}
+          
           <div className={styles.statusBox3}>
             <img src={num3} alt="3" className={styles.numberImage} />
             <div className={styles.statusBox}>
@@ -129,7 +129,7 @@ const HomePage = () => {
   </div>
 </div>
 
-      {/* Deals Section */}
+      
       <div className={styles.dealsSection}>
         <div className={styles.dealsSectionHeader}>
           <h2>Up to -40% 🎊 Order.uk exclusive deals</h2>
@@ -246,7 +246,7 @@ const HomePage = () => {
         <p>Receive your order at a lightning-fast speed!</p>
       </div>
 
-      {/* Place description here */}
+     
       <p className={styles.processDescription}>
         Order.UK simplifies the food ordering process. Browse through our diverse menu, 
         select your favorite dishes, and proceed to checkout. Your delicious meal will be 

@@ -526,7 +526,7 @@
 
 .tab.active {
   border-color: #ff6b00;
-  color: #000; /* Set the text color to black for the active tab */
+  color: #000; 
   font-weight: 600;
 }
 
@@ -537,7 +537,7 @@
   background: white;
   padding: 2rem;
   border-radius: 10px;
-  position: relative; /* Added for positioning */
+  position: relative;
 }
 
 .faqSection {
@@ -592,7 +592,7 @@
 }
 
 .processDescription {
-  grid-column: 1 / -1; /* Span across all columns of infoCards */
+  grid-column: 1 / -1; 
   margin-top: 2rem;
   text-align: center;
   line-height: 1.6;
@@ -605,13 +605,13 @@
   color: white;
   max-width: 1400px;
   margin: 3rem auto;
-  padding: 1.5rem 1rem; /* Reduced padding for smaller vertical size */
+  padding: 1.5rem 1rem; 
   border-radius: 10px;
   font-family: 'Poppins', sans-serif;
 }
 
 .statsContent {
-  display: flex; /* Use flex for better control */
+  display: flex; 
   justify-content: space-between;
   align-items: center;
   text-align: center;
@@ -619,18 +619,18 @@
 
 .statItem {
   flex: 1;
-  padding: 0.8rem; /* Reduced padding for smaller height */
-  position: relative; /* Needed for dividers */
+  padding: 0.8rem; 
+  position: relative; 
 }
 
 .statNumber {
-  font-size: 2.2rem; /* Adjusted font size slightly */
+  font-size: 2.2rem; 
   font-weight: 300;
   margin-bottom: 0.3rem;
 }
 
 .statLabel {
-  font-size: 1.2rem; /* Reduced font size for compact look */
+  font-size: 1.2rem; 
   font-weight: 600;
 }
 
@@ -639,15 +639,15 @@
   content: '';
   position: absolute;
   right: 0;
-  top: 20%; /* Start slightly below the top */
-  transform: translateY(0); /* Remove vertical centering */
-  height: 60%; /* Increased height for bigger dividers */
-  width: 2px; /* Increased width for visibility */
-  background: rgba(255, 255, 255, 0.5); /* Slightly more opaque */
+  top: 20%; 
+  transform: translateY(0);
+  height: 60%; 
+  width: 2px; 
+  background: rgba(255, 255, 255, 0.5);
 }
 
   
-  /* Responsive Design */
+ 
   @media (max-width: 1024px) {
     .downloadSection,
     .partnerSection,

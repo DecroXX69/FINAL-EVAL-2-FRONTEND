@@ -1,4 +1,4 @@
-// ReviewCard.jsx
+
 import React from 'react';
 import styles from './ReviewCard.module.css';
 import StarIcon from '../assets/review.png';
@@ -9,7 +9,7 @@ const ReviewCard = ({ review }) => {
     return null;
   }
 
-  // Format the date string properly
+  
   const formatDate = (dateString) => {
     try {
       const date = new Date(dateString);
@@ -28,7 +28,7 @@ const ReviewCard = ({ review }) => {
             alt={review.userName || 'User'} 
             className={styles.reviewProfileImage}
             onError={(e) => {
-              e.target.src = 'fallback-image-url.jpg'; // Add a fallback image URL
+              e.target.src = 'fallback-image-url.jpg';
             }}
           />
           <div className={styles.reviewProfileInfo}>

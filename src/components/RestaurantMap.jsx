@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import styles from './RestaurantMap.module.css';
-import RouterIcon from '../assets/marker-icon.png'; // Update this import path
+import RouterIcon from '../assets/marker-icon.png';
 
 const CustomMarkerIcon = () => {
   return L.divIcon({
@@ -11,13 +11,7 @@ const CustomMarkerIcon = () => {
     html: `
       <div class="${styles.markerContainer}">
         <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-          <circle 
-            cx="20" 
-            cy="20" 
-            r="20" 
-            fill="#03081F" 
-            
-          />
+          <circle cx="20" cy="20" r="20" fill="#03081F" />
         </svg>
         <img 
           src="${RouterIcon}" 
@@ -42,24 +36,20 @@ const RestaurantMap = () => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
   useEffect(() => {
-    // Retrieve the selected restaurant from localStorage
     const restaurantData = JSON.parse(localStorage.getItem('selectedRestaurant'));
     setSelectedRestaurant(restaurantData);
   }, []);
 
-  // Create the Google Street View layer
   const googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
     maxZoom: 20,
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
   });
 
-  // Add the Google Street View layer to the map
   const MapWithStreetView = () => {
     const map = useMap();
     useEffect(() => {
       googleStreets.addTo(map);
-    }, [map, googleStreets]);
-
+    }, [map]);
     return null;
   };
 
@@ -67,20 +57,28 @@ const RestaurantMap = () => {
     <div className={styles.mapContainer}>
       {selectedRestaurant && (
         <div className={styles.restaurantInfo}>
-          <h2 className={styles.restaurantName}>{selectedRestaurant.name}</h2>
-          <p className={styles.restaurantLocation} style={{ color: '#ff9500' }}>
-            {selectedRestaurant.slogan}
+          <div className={styles.header}>
+            <h2 className={styles.restaurantName}>{selectedRestaurant.name}</h2>
+            <p className={styles.location}>South London</p>
+          </div>
+          <p className={styles.address}>
+            Tooley St, London Bridge, London SE1 2TF, United Kingdom
           </p>
-          <p className={styles.restaurantCity} style={{ color: '#ff9500' }}>
-            London
-          </p>
-          <p className={styles.restaurantAddress}>Tooley St, London Bridge, London SE1 2TF, United Kingdom</p>
-          <p className={styles.restaurantPhone} style={{ color: '#ff9500' }}>
-            Phone: +93444343
-          </p>
-          <a className={styles.restaurantWebsite} href={selectedRestaurant.id === 'mcdonalds' ? 'http://mcdonalds.uk/' : '#'} style={{ color: '#ff9500' }}>
-            {selectedRestaurant.id === 'mcdonalds' ? 'http://mcdonalds.uk/' : 'http://dummy.com'}
-          </a>
+          <div className={styles.contactInfo}>
+            <div className={styles.phoneSection}>
+              <p className={styles.label}>Phone number:</p>
+              <p className={styles.value}>+93444343</p>
+            </div>
+            <div className={styles.websiteSection}>
+              <p className={styles.label}>Website:</p>
+              <a 
+                href={selectedRestaurant.id === 'mcdonalds' ? 'http://mcdonalds.uk/' : 'http://dummy.com'} 
+                className={styles.value}
+              >
+                {selectedRestaurant.id === 'mcdonalds' ? 'http://mcdonalds.uk/' : 'http://dummy.com'}
+              </a>
+            </div>
+          </div>
         </div>
       )}
       <MapContainer

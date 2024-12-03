@@ -34,12 +34,12 @@ const CheckoutPage = () => {
           setCartItems(data.cart.items);
         } catch (error) {
           setError(error.message || 'Failed to load shared cart');
-          setTimeout(() => navigate('/'), 3000); // Redirect after showing error
+          setTimeout(() => navigate('/'), 3000); 
         } finally {
           setLoading(false);
         }
       } else {
-        // Regular cart
+        
         const regularCart = JSON.parse(localStorage.getItem('cart') || '[]');
         setCartItems(regularCart);
         setLoading(false);
@@ -64,7 +64,7 @@ const CheckoutPage = () => {
   const handlePaymentClick = () => {
     const token = localStorage.getItem('token');
     if (!token) {
-      // Save the current cart and redirect URL to localStorage
+     
       if (cartId) {
         localStorage.setItem('pendingSharedCart', cartId);
         localStorage.setItem('redirectAfterAuth', `/shared-cart/${cartId}`);
@@ -74,9 +74,9 @@ const CheckoutPage = () => {
       navigate('/');
       alert('Please create an account or login to proceed with payment');
     } else {
-      // If user is authenticated, proceed to payment
+      
       if (cartId) {
-        // For shared cart, first save items to user's cart
+        
         localStorage.setItem('cart', JSON.stringify(cartItems));
       }
       navigate('/payment');

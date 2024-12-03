@@ -32,7 +32,7 @@
 .paymentMethods {
   display: flex;
   flex-direction: column;
-  gap: 12px;  /* Reduced gap between payment methods */
+  gap: 12px; 
 }
 
 .walletSection {
@@ -44,7 +44,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;  /* Reduced padding for smaller height */
+  padding: 16px;  
 }
 
 .leftContent {
@@ -54,7 +54,7 @@
 }
 
 .iconCircle {
-  width: 36px;  /* Slightly smaller icons */
+  width: 36px;  
   height: 36px;
   border-radius: 50%;
   display: flex;
@@ -83,12 +83,12 @@
   color: #666;
 }
 
-/* Removed .paymentOptions container styles since each option will be individual */
+
 
 .paymentOption {
   border: 0.1px solid orange  ;
   border-radius: 40px;
-  margin-bottom: 12px;  /* Consistent spacing */
+  margin-bottom: 12px;  
   background: #fff;
 }
 
@@ -104,7 +104,7 @@
   border-radius: 40px;
   
   font-weight: 500;
-  padding: 16px;  /* Matching padding with other options */
+  padding: 16px;  
   cursor: pointer;
   text-align: left;
   width: 100%;
@@ -146,7 +146,7 @@
   font-size: 16px;
 }
 
-/* Rest of the CSS remains the same */
+
 .successContainer {
   display: flex;
   justify-content: center;

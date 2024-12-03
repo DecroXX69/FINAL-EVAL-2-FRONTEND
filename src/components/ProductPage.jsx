@@ -11,7 +11,7 @@ import ReviewList from './ReviewList';
 import RestaurantsSection from './RestaurantsSection';
 import Footer  from './footer';
 import Cart from './Cart';
-// Import your assets
+
 import orderIcon from '../assets/order-icon.png';
 import deliveryIcon from '../assets/delivery-icon.png';
 import clockIcon from '../assets/clock-icon.png';
@@ -26,7 +26,7 @@ import addToCartIcon from '../assets/add-to-cart-icon.png';
 const ProductPage = () => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const [foodItems, setFoodItems] = useState([]);
-  const [cart, setCart] = useState([]); // Restored local cart state
+  const [cart, setCart] = useState([]); 
   const [isCartVisible, setIsCartVisible] = useState(false);
   
   const { 
@@ -83,7 +83,7 @@ const ProductPage = () => {
   }, [navigate]);
 
   useEffect(() => {
-    // Show/hide cart based on cart items
+    
     setIsCartVisible(cart.length > 0);
   }, [cart]);
 
@@ -91,22 +91,22 @@ const ProductPage = () => {
     setCart(prevCart => {
       const existingItem = prevCart.find(cartItem => cartItem._id === item._id);
       if (existingItem) {
-        // If item exists, increment quantity
+        
         return prevCart.map(cartItem => 
           cartItem._id === item._id 
             ? {...cartItem, quantity: cartItem.quantity + 1}
             : cartItem
         );
       }
-      // If item doesn't exist, add it with quantity 1
+      
       return [...prevCart, {...item, quantity: 1}];
     });
-    contextAddToCart(item); // Also add to context
+    contextAddToCart(item); 
   };
   
   const handleRemoveFromCart = (itemId) => {
     setCart(prevCart => prevCart.filter(item => item._id !== itemId));
-    contextRemoveFromCart(itemId); // Also remove from context
+    contextRemoveFromCart(itemId); 
   };
   
   const handleUpdateQuantity = (itemId, newQuantity) => {
@@ -118,7 +118,7 @@ const ProductPage = () => {
           : item
       )
     );
-    contextUpdateQuantity(itemId, newQuantity); // Also update in context
+    contextUpdateQuantity(itemId, newQuantity); 
   };
 
 

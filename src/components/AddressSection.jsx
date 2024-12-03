@@ -9,16 +9,16 @@ const AddressSection = ({ onBack }) => {
   const [showModal, setShowModal] = useState(false);
   const [addresses, setAddresses] = useState([]);
   const [editingAddress, setEditingAddress] = useState(null);
-  const { user } = useContext(AuthContext); // Assuming user has _id property
+  const { user } = useContext(AuthContext); 
   const navigate = useNavigate();
 
-  // Fetch addresses when the component loads
+  
   useEffect(() => {
-    //console.log('User from AuthContext:', user);
+    
     const fetchAddresses = async () => {
       const token = localStorage.getItem('token');
       try {
-        console.log('User ID:', user ? user.user.id : 'No ID'); // Replace .id with ._id if using that
+        console.log('User ID:', user ? user.user.id : 'No ID'); 
         console.log('User from AuthContext:', user);
         const response = await fetch(`http://localhost:5000/api/users/${user.user.id}/addresses`, {
           method: 'GET',
@@ -44,7 +44,7 @@ const AddressSection = ({ onBack }) => {
     navigate('/checkout', { state: { selectedAddress: address } });
   };
 
-  // Add or update an address
+ 
   const handleAddAddress = async (address) => {
     const token = localStorage.getItem('token');
     try {
@@ -77,7 +77,7 @@ const AddressSection = ({ onBack }) => {
     }
   };
 
-  // Remove an address
+ 
   const handleRemove = async (index) => {
     const token = localStorage.getItem('token');
     try {
@@ -101,7 +101,7 @@ const AddressSection = ({ onBack }) => {
     }
   };
 
-  // Edit an address
+
   const handleEdit = (index) => {
     setEditingAddress(index);
     setShowModal(true);
@@ -109,7 +109,7 @@ const AddressSection = ({ onBack }) => {
 
   return (
     <div className={styles.addressContainer}>
-      {/* Header */}
+     
       <div className={styles.addressHeader}>
         <button className={styles.backButton} onClick={onBack}>
           <ArrowLeft size={24} />
@@ -117,7 +117,7 @@ const AddressSection = ({ onBack }) => {
         <h2>Your Addresses</h2>
       </div>
 
-      {/* Address List */}
+      
       <div className={styles.addressGrid}>
         <div className={styles.addAddressCard} onClick={() => setShowModal(true)}>
           <div className={styles.plusIconWrapper}>
@@ -128,7 +128,7 @@ const AddressSection = ({ onBack }) => {
 
         {addresses.map((address, index) => (
           <div key={address._id} className={styles.addressCard} onClick={() => {
-            console.log('Address clicked:', address);  // Log address details when clicked
+            console.log('Address clicked:', address);  
             handleNavigateToCheckout(address);
           }}
           >
@@ -145,7 +145,7 @@ const AddressSection = ({ onBack }) => {
         ))}
       </div>
 
-      {/* Address Modal */}
+      
       {showModal && (
         <AddressModal
           onClose={() => {

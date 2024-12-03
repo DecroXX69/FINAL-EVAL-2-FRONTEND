@@ -6,7 +6,7 @@ import { ArrowLeft, Edit2, PlusCircle, CreditCard } from 'lucide-react';
 import TopNavbar from './TopNavbar';
 import MainNavbar from './MainNavbar';
 import Footer from './footer';
-
+import haha from '../assets/user.png';
 const UserProfile = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -87,7 +87,7 @@ const UserProfile = () => {
       <div className={styles.profileSection}>
         <div className={styles.profileHeader}>
           <div className={styles.profileImage}>
-            <img src="/api/placeholder/80/80" alt="Profile" />
+            <img src={haha} alt="Profile" />
           </div>
           <h2>{userData.name}</h2>
           <button onClick={handleEdit} className={styles.editButton}>

@@ -2,13 +2,13 @@
     position: sticky;
     top: 20px;
     width: 300px;
-    max-height: 100vh; /* Limit height to 80% of viewport height */
-    overflow-y: auto; /* Enable scrolling if content is too long */
+    max-height: 100vh; 
+    overflow-y: auto;
     background: white;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 16px;
-    margin-top: -10px; /* Adjust this value to align with offers grid */
+    margin-top: -10px; 
   }
   
   .shareSection {
@@ -25,12 +25,13 @@
   .copyButton {
     margin-left: auto;
     background: white;
-    color: #ff6b00;
+    color: #fc8a06;
     border: none;
     padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
   }
+
   
   .basketHeader {
     display: flex;
@@ -170,3 +171,27 @@
   .checkoutButton:hover {
     background: #008c44;
   }
+
+  .optionIcon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.deliveryIcon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.basketIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.removeIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
