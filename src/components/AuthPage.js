@@ -73,7 +73,8 @@ const AuthPage = () => {
             <img src={Applogo} alt="App Logo" className={styles.logo} />
             
             <p className={styles.appDescription}>
-              Delivering delicious meals right to your doorstep.
+            Today is a new day. It's your day. You shape it. 
+            Sign in to start ordering.
             </p>
           </div>
           <form onSubmit={handleSubmit} className={styles.form}>
