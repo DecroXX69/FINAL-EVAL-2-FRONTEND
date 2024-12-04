@@ -71,7 +71,9 @@ const AuthPage = () => {
         <div className={styles.leftContainer}>
           <div className={styles.brandContainer}>
             <img src={Applogo} alt="App Logo" className={styles.logo} />
-            
+            <h3 className={styles.brandName}>
+  {isSignUp ? "Welcome" : "Welcome Back"}
+</h3>
             <p className={styles.appDescription}>
             Today is a new day. It's your day. You shape it. 
             Sign in to start ordering.
