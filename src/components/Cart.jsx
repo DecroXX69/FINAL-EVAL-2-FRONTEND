@@ -19,44 +19,38 @@ const Cart = ({ items, removeFromCart, updateQuantity }) => {
   };
 
 
-  const handleCopyLink = async () => {
-    try {
-      const cartData = {
-        items,
-        total,
-        subTotal,
-        discount,
-        deliveryFee
-      };
-  
-      // Make request to backend port 5000
-      const response = await fetch('http://localhost:5000/api/shared-carts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(cartData)
-      });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-  
-      const data = await response.json();
-      console.log('Response data:', data);
-  
-      if (!data.success) {
-        throw new Error(data.message || 'Failed to create shared cart');
-      }
-  
-      const shareableUrl = `${window.location.origin}/shared-cart/${data.cartId}`;
-      await navigator.clipboard.writeText(shareableUrl);
-      alert('Cart link copied to clipboard! The link will expire in 24 hours.');
-    } catch (err) {
-      console.error('Failed to create shared cart link:', err);
-      alert(`Failed to create shared cart link: ${err.message}`);
+ const handleCopyLink = async () => {
+  try {
+    const cartData = {
+      items,
+      total,
+      subTotal,
+      discount,
+      deliveryFee
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/shared-carts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cartData)
+    });
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
     }
-  };
+
+    const shareableUrl = `${window.location.origin}/shared-cart/${data.cartId}`;
+    await navigator.clipboard.writeText(shareableUrl);
+    alert('Cart link copied to clipboard! The link will expire in 24 hours.');
+  } catch (err) {
+    console.error('Failed to create shared cart link:', err);
+    alert('Failed to create shared cart link. Please try again.');
+  }
+};
   
   return (
     <div className={styles.cartContainer}>
