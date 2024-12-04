@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Cart.module.css';
 import { Share2, ShoppingBasket, X, Gift, Tag, Truck, Store } from 'lucide-react';
-
+import { v4 as uuidv4 } from 'uuid'; 
 
 const Cart = ({ items, removeFromCart, updateQuantity }) => {
     const navigate = useNavigate();
@@ -17,13 +17,45 @@ const Cart = ({ items, removeFromCart, updateQuantity }) => {
     localStorage.setItem('cart', JSON.stringify(items));
     navigate('/checkout');
   };
-  const handleCopyLink = () => {
-    // Generate a unique cart ID or use existing one
-    const cartId = Date.now().toString();
-    const checkoutLink = `${window.location.origin}/checkout/${cartId}`;
-    navigator.clipboard.writeText(checkoutLink)
-      .then(() => alert('Link copied to clipboard!'))
-      .catch(err => console.error('Failed to copy link:', err));
+
+
+  const handleCopyLink = async () => {
+    try {
+      const cartData = {
+        items,
+        total,
+        subTotal,
+        discount,
+        deliveryFee
+      };
+  
+      // Make request to backend port 5000
+      const response = await fetch('http://localhost:5000/api/shared-carts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cartData)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log('Response data:', data);
+  
+      if (!data.success) {
+        throw new Error(data.message || 'Failed to create shared cart');
+      }
+  
+      const shareableUrl = `${window.location.origin}/shared-cart/${data.cartId}`;
+      await navigator.clipboard.writeText(shareableUrl);
+      alert('Cart link copied to clipboard! The link will expire in 24 hours.');
+    } catch (err) {
+      console.error('Failed to create shared cart link:', err);
+      alert(`Failed to create shared cart link: ${err.message}`);
+    }
   };
   
   return (
