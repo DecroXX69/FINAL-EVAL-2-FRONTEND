@@ -24,10 +24,10 @@ API.interceptors.request.use(
 
 
 export const authService = {
-  register: (userData) => API.post('/users/register', userData),
-  login: (userData) => API.post('/users/login', userData),
-  getUserProfile: () => API.get('/users/profile'),
-  updateProfile: (userData) => API.put('/users/profile', userData),
+  register: (userData) => API.post('/api/users/register', userData),
+  login: (userData) => API.post('/api/users/login', userData),
+  getUserProfile: () => API.get('/api/users/profile'),
+  updateProfile: (userData) => API.put('/api/users/profile', userData),
 };
 
 
