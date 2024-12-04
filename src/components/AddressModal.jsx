@@ -68,11 +68,12 @@ const AddressModal = ({ onClose, onSave, initialAddress = null }) => {
           <h2>Add Address</h2>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className={styles.inputRow}>
+          <div className={styles.topInputs}>
             <select
               value={formData.state}
               onChange={(e) => setFormData({ ...formData, state: e.target.value })}
               required
+              className={styles.stateSelect}
             >
               <option value="">State</option>
               {INDIAN_STATES.map((state) => (
@@ -89,9 +90,7 @@ const AddressModal = ({ onClose, onSave, initialAddress = null }) => {
               onChange={(e) => setFormData({ ...formData, city: e.target.value })}
               required
             />
-          </div>
-          
-          <div className={styles.inputRow}>
+            
             <input
               type="text"
               placeholder="Pin Code"
@@ -116,9 +115,11 @@ const AddressModal = ({ onClose, onSave, initialAddress = null }) => {
             required
           />
           
-          <button type="submit" className={styles.saveButton}>
-            Save
-          </button>
+          <div className={styles.buttonContainer}>
+            <button type="submit" className={styles.saveButton}>
+              Save
+            </button>
+          </div>
         </form>
       </div>
     </div>

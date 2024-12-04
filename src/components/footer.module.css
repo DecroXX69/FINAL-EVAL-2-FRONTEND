@@ -1,88 +1,57 @@
+/* Footer.module.css */
 .footerContainer {
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .greySection {
     display: flex;
-    position: relative;
     padding: 40px;
+    background-color: rgba(217, 217, 217, 0.6);
     justify-content: space-between;
 }
 
-
-.greySection::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgb(217, 217, 217);
-    opacity: 0.6;
-    z-index: 1;
-}
-
-.leftSection, .middleSection, .rightSection {
-    position: relative;
-    z-index: 2;
-}
-
 .leftSection {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 20px;
+    align-items: flex-start;
 }
 
 .storeLogo {
-    position: relative;
-    right: 62px;
-    top: 15px;
-    width: 210px; 
-    height: auto;
-    margin-bottom: 20px; 
+    width: 150px;
+    margin-bottom: 15px;
 }
 
 .companyInfo {
     font-size: 12px;
     color: #666;
-    margin-top: 20px;
-    text-align: center;
+    max-width: 250px;
 }
 
 .middleSection {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .heading {
-    font-size: 13px;
-    font-weight: bold;
-    color: #000;
+    font-size: 14px;
+    font-weight: 600;
     margin-bottom: 15px;
-    position: relative;
-    right: 80px;
 }
 
 .subscribeContainer {
     display: flex;
-    margin: 10px 0;
-    background-color: #d9d9d9;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .emailInput {
-    width: 250px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 40px;
-    background-color: #d9d9d9;
+    border-radius: 20px;
+    border: none;
+    background-color: #ffffff;
+    width: 200px;
 }
 
 .subscribeButton {
@@ -98,43 +67,34 @@
     display: flex;
     gap: 15px;
     margin-top: 15px;
-    transform: translateX(-20px);
-    position: relative;
-    right: 70px;  
 }
 
 .icon {
     width: 24px;
     height: 24px;
-    cursor: pointer;
 }
 
 .rightSection {
-    flex: 1;
     display: flex;
-    justify-content: flex-end;
-    gap: 60px;
-    padding: 0 20px;
+    gap: 40px;
 }
 
 .linksColumn {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    gap: 10px;
 }
 
 .linkHeading {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .link {
     color: #333;
     text-decoration: none;
     font-size: 14px;
-    margin-bottom: 10px;
 }
 
 .blueSection {
@@ -144,11 +104,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
-}
-
-.blueSection p {
-    font-size: 11px;
 }
 
 .smallLinks {
@@ -158,15 +113,66 @@
 
 .blueLink {
     color: #fff;
-    font-size: 11px;
+    font-size: 12px;
     text-decoration: none;
 }
 
+/* Mobile Footer Styles */
+@media (max-width: 768px) {
+    .greySection {
+        flex-direction: column;
+        padding: 20px;
+        gap: 30px;
+    }
 
-.emailPolicy {
-    font-size: 10px; /* Reduced from 12px */
-    color: #666;
-    margin-top: 5px;
-    position: relative;
-    right: 80px;
+    .leftSection {
+        align-items: center;
+        text-align: center;
+    }
+
+    .storeLogo {
+        width: 120px;
+    }
+
+    .middleSection {
+        align-items: center;
+        text-align: center;
+    }
+
+    .subscribeContainer {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .emailInput {
+        width: 100%;
+    }
+
+    .subscribeButton {
+        width: 100%;
+    }
+
+    .rightSection {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .linksColumn {
+        align-items: center;
+    }
+
+    .blueSection {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 15px;
+        height: auto;
+    }
+
+    .smallLinks {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
 }

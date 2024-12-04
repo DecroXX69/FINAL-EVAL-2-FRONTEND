@@ -90,10 +90,7 @@
   height: 40px;
 }
  /* Main Navbar Styles */
-.mainNav {
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+
 
 .mainNavContent {
   max-width: 1400px;
@@ -204,5 +201,62 @@
   @media (max-width: 480px) {
     .restaurantsGrid {
       grid-template-columns: 1fr;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .topNav {
+      width: 100%;
+      border-radius: 0;
+    }
+  
+    .topNavContent {
+      padding: 12px;
+    }
+  
+    .leftContent {
+      display: none;
+    }
+  
+    .cartButton {
+      background-color: transparent;
+      color: #333;
+      border-radius: 0;
+      margin: 0;
+      padding: 0;
+    }
+  
+    .cartButton > div:first-child {
+      display: none;
+    }
+  
+    .cartButton > div:last-child {
+      padding: 0;
+    }
+  
+    .divider {
+      display: none;
+    }
+  
+    .mobileTopNav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .mobileTopNav > div:first-child {
+      display: flex;
+      align-items: center;
+    }
+  
+    .mobileTopNav > div:last-child {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  
+    .mobileTopNav img {
+      height: 24px;
     }
   }

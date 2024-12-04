@@ -719,3 +719,25 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* Add these to your Home.module.css */
+@media screen and (max-width: 768px) {
+  .container {
+    /* Add any mobile-specific container styles */
+  }
+
+  .heroContent {
+    flex-direction: column;
+  }
+
+  .heroLeft {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .heroRight {
+    width: 100%;
+  }
+
+  /* Add other mobile-specific styles as needed */
+}

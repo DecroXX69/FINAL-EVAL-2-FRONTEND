@@ -1,0 +1,76 @@
+/* MobileNavbar.module.css */
+.container {
+    background-color: #fafafa;
+    border-bottom: 1px solid #eee;
+    padding: 12px;
+  }
+  
+  .topNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 24px;
+  }
+  
+  .menuButton {
+    cursor: pointer;
+  }
+  
+  .menuButton img {
+    height: 24px;
+  }
+  
+  .secondNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+  }
+  
+  .userInfo {
+    display: flex;
+    align-items: center;
+    background-color: #f97316;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  
+  .userInfo img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+  
+  .cartInfo {
+    display: flex;
+    align-items: center;
+    background-color: #16a34a;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 12px;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  .cartInfo img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .locationInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    margin-top: 12px;
+  }
+  
+  .locationInfo img {
+    width: 20px;
+    height: 20px;
+  }

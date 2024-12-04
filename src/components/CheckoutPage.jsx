@@ -1,4 +1,3 @@
-// CheckoutPage.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, ChevronRight } from 'lucide-react';
@@ -8,6 +7,7 @@ import RestaurantsSection from './RestaurantsSection';
 import Footer from './footer';
 import styles from './CheckoutPage.module.css';
 import AddressSection from './AddressSection';
+import addressIcon from '../assets/address.png'; 
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -39,7 +39,6 @@ const CheckoutPage = () => {
           setLoading(false);
         }
       } else {
-        
         const regularCart = JSON.parse(localStorage.getItem('cart') || '[]');
         setCartItems(regularCart);
         setLoading(false);
@@ -49,22 +48,11 @@ const CheckoutPage = () => {
     loadCartItems();
   }, [cartId, navigate]);
 
-  if (loading) {
-    return <div className={styles.loading}>Loading cart...</div>;
-  }
-
-  if (error) {
-    return <div className={styles.error}>{error}</div>;
-  }
-
-  const cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-  const salesTax = 10;
-  const finalTotal = cartTotal + salesTax;
-
   const handlePaymentClick = () => {
     const token = localStorage.getItem('token');
+    
+    // First check if user is logged in
     if (!token) {
-     
       if (cartId) {
         localStorage.setItem('pendingSharedCart', cartId);
         localStorage.setItem('redirectAfterAuth', `/shared-cart/${cartId}`);
@@ -73,15 +61,39 @@ const CheckoutPage = () => {
       }
       navigate('/');
       alert('Please create an account or login to proceed with payment');
-    } else {
-      
-      if (cartId) {
-        
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-      }
-      navigate('/payment');
+      return;
     }
+    
+    // Then check if address is selected
+    if (!selectedAddress) {
+      alert('Please add a delivery address before proceeding to payment');
+      setShowAddresses(true);
+      return;
+    }
+    
+    // If both checks pass, proceed to payment
+    if (cartId) {
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+    }
+    navigate('/payment');
   };
+
+  if (loading) {
+    return <div className={styles.loading}>Loading cart...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
+
+  const truncateText = (text, maxLength = 35) => {
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength) + '...';
+  };
+
+  const cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const salesTax = 10;
+  const finalTotal = cartTotal + salesTax;
 
   return (
     <div className={styles.checkoutPage}>
@@ -137,16 +149,21 @@ const CheckoutPage = () => {
                     setShowAddresses(true);
                   }}
                 >
-                  <div className={styles.addressContent}>
-                    <MapPin size={20} />
-                    <div className={styles.addressInfo}>
-                      <h3>Delivery Address</h3>
-                      {selectedAddress ? (
-                        <div>
-                          <p>{selectedAddress.name}</p>
-                          <p>{selectedAddress.fullAddress}</p>
-                          <p>{selectedAddress.phoneNumber}</p>
-                        </div>
+                   <div className={styles.addressContent}>
+                  <img 
+                    src={addressIcon} 
+                    alt="Address" 
+                    className={styles.addressIcon}
+                  />
+                  <div className={styles.addressInfo}>
+                    <h3>Delivery Address</h3>
+                    {selectedAddress ? (
+                      <div className={styles.selectedAddress}>
+                        <p>{selectedAddress.name}</p>
+                        <p className={styles.truncatedAddress}>
+                          {truncateText(selectedAddress.fullAddress)}
+                        </p>
+                      </div>
                       ) : (
                         <p>Add address</p>
                       )}

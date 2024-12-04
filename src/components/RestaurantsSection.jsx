@@ -8,7 +8,7 @@ import texas from '../assets/texas.png';
 import king from '../assets/king.png';
 import shawarma from '../assets/shawarma.png';
 
-const RestaurantsSection = () => {
+const RestaurantsSection = ({ title = "Popular Restaurants" }) => {
   const navigate = useNavigate();
 
   const restaurants = [
@@ -21,15 +21,13 @@ const RestaurantsSection = () => {
   ];
 
   const handleRestaurantClick = (restaurant) => {
-    
     localStorage.setItem('selectedRestaurant', JSON.stringify(restaurant));
-    
     navigate('/product');
   };
 
   return (
     <div className={styles.restaurantsSection}>
-      <h2>Popular Restaurants</h2>
+      <h2>{title}</h2>
       <div className={styles.restaurantsGrid}>
         {restaurants.map((restaurant, index) => (
           <div 

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Home.module.css';
 import Footer from './footer';
 import TopNavbar from './TopNavbar';
 import MainNavbar from './MainNavbar';
 import RestaurantsSection from './RestaurantsSection';
+import MobileNavbar from './MobileNavbar';
 import applogo from '../assets/applogo.png';
 import lol  from '../assets/lol.png';
 import wpizza from '../assets/wpizza.png';
@@ -29,7 +30,25 @@ import num2 from '../assets/2.png';
 import num3 from '../assets/3.png';
 import playstore from '../assets/play-store.png';
 const HomePage = () => {
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    // Function to check if viewport is mobile width
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // You can adjust this breakpoint
+    };
+
+    // Check on initial load
+    checkMobile();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
   
 
   
@@ -47,9 +66,14 @@ const HomePage = () => {
 
   return (
     <div className={styles.container}>
-       <TopNavbar />
-       <MainNavbar />
-
+      {isMobile ? (
+        <MobileNavbar />
+      ) : (
+        <>
+          <TopNavbar />
+          <MainNavbar />
+        </>
+      )}
      
 <div className={styles.heroSection}>
   <div className={styles.heroContent}>

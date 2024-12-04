@@ -109,15 +109,13 @@ const AddressSection = ({ onBack }) => {
 
   return (
     <div className={styles.addressContainer}>
-     
       <div className={styles.addressHeader}>
         <button className={styles.backButton} onClick={onBack}>
           <ArrowLeft size={24} />
         </button>
         <h2>Your Addresses</h2>
       </div>
-
-      
+  
       <div className={styles.addressGrid}>
         <div className={styles.addAddressCard} onClick={() => setShowModal(true)}>
           <div className={styles.plusIconWrapper}>
@@ -125,27 +123,27 @@ const AddressSection = ({ onBack }) => {
           </div>
           <span>Add Address</span>
         </div>
-
+  
         {addresses.map((address, index) => (
           <div key={address._id} className={styles.addressCard} onClick={() => {
-            console.log('Address clicked:', address);  
+            console.log('Address clicked:', address);
             handleNavigateToCheckout(address);
-          }}
-          >
-            {index === 0 && <span className={styles.defaultTag}>Default</span>}
-            <h3>{address.name}</h3>
-            <p>{address.fullAddress}</p>
-            <p>Phone Number: {address.phoneNumber}</p>
+          }}>
+            {index === 0 && (
+              <span className={`${styles.defaultTag} ${styles.defaultBackground}`}>Default</span>
+            )}
+            <h3>{user.user.name}</h3>
+            <p className={styles.addressText}>{address.fullAddress}</p>
+            <p className={styles.addressText}>Phone Number: {address.phoneNumber}</p>
             <div className={styles.addressActions}>
-              <button onClick={() => handleEdit(index)}>Edit</button>
-              <button onClick={() => handleRemove(index)}>Remove</button>
-              
+              <button className={styles.actionButton} onClick={() => handleEdit(index)}>Edit</button>
+              <div className={styles.actionDivider} />
+              <button className={styles.actionButton} onClick={() => handleRemove(index)}>Remove</button>
             </div>
           </div>
         ))}
       </div>
-
-      
+  
       {showModal && (
         <AddressModal
           onClose={() => {

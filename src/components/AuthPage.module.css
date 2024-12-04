@@ -1,4 +1,6 @@
+/* AuthPage.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
 body, html {
     margin: 0;
     padding: 0;
@@ -10,37 +12,30 @@ body, html {
     box-sizing: inherit; 
 }
 
-/* Auth page CSS */
+
 .pageContainer {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    overflow: hidden;
     font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
 }
 
 .mainContainer {
     display: flex;
     flex: 1;
-}
-
-.leftContainer, .rightContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
+    width: 100%;
 }
 
 .leftContainer {
-    background-color: #ffffff;
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .brandContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     width: 100%;
     max-width: 400px;
     margin-bottom: 30px;
@@ -48,22 +43,7 @@ body, html {
 
 .logo {
     width: 120px;
-    margin-bottom: 30px;
-    margin-left: 100px;
-}
-
-.welcomeText {
-    font-size: 24px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.handImage {
-    width: 24px;
-    height: 24px;
+    margin-bottom: 20px;
 }
 
 .appDescription {
@@ -103,16 +83,17 @@ body, html {
     color: #fff;
     padding: 14px;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .switchText {
     text-align: center;
     margin-top: 20px;
     color: #666;
+    font-size: 14px;
 }
 
 .switchButton {
@@ -122,29 +103,54 @@ body, html {
 }
 
 .rightContainer {
-    
-    overflow: hidden;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .foodImage {
     width: 100%;
     height: 100%;
-    object-fit: contain; 
+    object-fit: cover;
 }
 
+/* Mobile Styles */
 @media (max-width: 768px) {
     .mainContainer {
         flex-direction: column;
-        max-height: none;
-    }
-    
-    .leftContainer, .rightContainer {
-        flex: none;
-        width: 100%;
-        padding: 20px;
     }
 
-    .foodImage {
-        height: 300px;
+    .leftContainer {
+        padding: 20px;
+        order: 1;
+    }
+
+    .brandContainer {
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo {
+        width: 100px;
+        margin-left: 0;
+    }
+
+    .rightContainer {
+        display: none;
+    }
+
+    .form {
+        margin-top: 20px;
+    }
+
+    .input {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .submitButton {
+        margin-top: 30px;
+        padding: 16px;
     }
 }

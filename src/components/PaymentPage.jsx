@@ -5,6 +5,7 @@ import styles from './PaymentPage.module.css';
 import  TopNavbar from './TopNavbar';
 import MainNavbar from './MainNavbar';
 import Footer from './footer';
+import check from '../assets/check.png';
 const PaymentPage = () => {
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
@@ -92,7 +93,7 @@ const PaymentPage = () => {
       ) : (
         <div className={styles.successContainer}>
           <div className={styles.successContent}>
-            <div className={styles.checkmark}>✓</div>
+            <div className={styles.checkmark}><img src={check} alt="Order logo" /></div>
             <h2>Order Placed Successfully</h2>
             <p className={styles.successMessage}>
               Your order is confirmed and on its way. Get set to savor your chosen delights!

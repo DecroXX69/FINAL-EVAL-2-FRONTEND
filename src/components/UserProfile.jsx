@@ -286,36 +286,38 @@ const CardModal = ({ card, onClose, onSave, onRemove, isEditMode }) => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
-        <h2>{isEditMode ? 'Edit Payment Method' : 'Add New Card'}</h2>
+        <h2 className={styles.title}>{isEditMode ? 'Edit Payment Method' : 'Add New Card'}</h2>
         <form onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label>Card Number</label>
+          <div className={styles.formField}>
+            <span className={styles.fieldLabel}>Card Number</span>
             <input
               type="text"
               name="number"
               value={cardData.number}
               onChange={handleInputChange}
-              placeholder={isEditMode ? "xxxx xxxx xxxx __" : "Enter card number"}
-              maxLength={isEditMode ? 19 : 19}
+              placeholder={isEditMode ? "xxxx xxxx xxxx 1234" : "Enter card number"}
+              maxLength={19}
               className={errors.number ? styles.errorInput : ''}
             />
             {errors.number && <span className={styles.errorText}>{errors.number}</span>}
           </div>
-          <div className={styles.formGroup}>
-            <label>Expiration</label>
+
+          <div className={styles.formField}>
+            <span className={styles.fieldLabel}>Expiration</span>
             <input
               type="text"
               name="expiration"
               value={cardData.expiration}
               onChange={handleInputChange}
-              placeholder="MM/YY"
+              placeholder="11/26"
               maxLength={5}
               className={errors.expiration ? styles.errorInput : ''}
             />
             {errors.expiration && <span className={styles.errorText}>{errors.expiration}</span>}
           </div>
-          <div className={styles.formGroup}>
-            <label>CVC</label>
+
+          <div className={styles.formField}>
+            <span className={styles.fieldLabel}>CVC</span>
             {isEditMode ? (
               <input
                 type="text"
@@ -336,19 +338,21 @@ const CardModal = ({ card, onClose, onSave, onRemove, isEditMode }) => {
             )}
             {errors.cvc && <span className={styles.errorText}>{errors.cvc}</span>}
           </div>
-          <div className={styles.formGroup}>
-            <label>Name on Card</label>
+
+          <div className={styles.formField}>
+            <span className={styles.fieldLabel}>Name on Card</span>
             <input
               type="text"
               name="name"
               value={cardData.name}
               onChange={handleInputChange}
-              placeholder="Name on card"
+              placeholder="Mike Ross"
               className={errors.name ? styles.errorInput : ''}
             />
             {errors.name && <span className={styles.errorText}>{errors.name}</span>}
           </div>
-          <div className={styles.modalButtons}>
+
+          <div className={styles.modalFooter}>
             <button 
               type="button" 
               onClick={() => onRemove(card?.id)}
@@ -357,10 +361,17 @@ const CardModal = ({ card, onClose, onSave, onRemove, isEditMode }) => {
               Remove
             </button>
             <div className={styles.rightButtons}>
-              <button type="button" onClick={onClose} className={styles.cancelButton}>
+              <button 
+                type="button" 
+                onClick={onClose} 
+                className={styles.cancelButton}
+              >
                 Cancel
               </button>
-              <button type="submit" className={styles.saveButton}>
+              <button 
+                type="submit" 
+                className={styles.saveButton}
+              >
                 Save Changes
               </button>
             </div>
@@ -370,5 +381,6 @@ const CardModal = ({ card, onClose, onSave, onRemove, isEditMode }) => {
     </div>
   );
 };
+
 
 export default UserProfile;

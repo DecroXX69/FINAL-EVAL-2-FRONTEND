@@ -1,10 +1,10 @@
 /* AddressSection.module.css */
 .addressContainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    margin-bottom: 300px;
-  }
+  max-width: 1400px; /* Reduced width */
+  margin: 0 auto;
+  padding: 2rem;
+  margin-bottom: 300px;
+}
   
   .addressHeader {
     display: flex;
@@ -30,7 +30,7 @@
   .addAddressCard {
     border: 2px dashed #ffddc7;
     border-radius: 12px;
-    height: 180px;
+    height: 212px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,9 +63,10 @@
   .addressCard {
     border: 1px solid #e0e0e0;
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1.2rem; /* Reduced padding */
     position: relative;
     background: white;
+    width: 90%; /* Reduced width */
   }
   
   .defaultTag {
@@ -92,6 +93,7 @@
     display: flex;
     gap: 1.5rem;
     margin-top: 1.5rem;
+    align-items: center; /* Vertically center the buttons */
   }
   
   .addressActions button {
@@ -101,4 +103,28 @@
     cursor: pointer;
     font-size: 0.9rem;
     padding: 0;
+  }
+
+  .addressText {
+    overflow-wrap: break-word; /* Wrap text within the container */
+  }
+  .defaultBackground {
+    background-color: #fff3eb; /* Light orange background */
+    padding: 0.2rem 0.5rem; /* Added padding */
+    border-radius: 4px; /* Added border-radius */
+  }
+
+  .actionButton {
+    color: #ff6b00;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+  }
+
+  .actionDivider {
+    width: 1px; /* Thin divider line */
+    height: 1.2rem; /* Adjusted height */
+    background-color: #e0e0e0;
   }

@@ -28,7 +28,7 @@ const ProductPage = () => {
   const [foodItems, setFoodItems] = useState([]);
   const [cart, setCart] = useState([]); 
   const [isCartVisible, setIsCartVisible] = useState(false);
-  
+  const [isMobile, setIsMobile] = useState(false);
   const { 
     cart: contextCart, 
     addToCart: contextAddToCart, 
@@ -80,8 +80,14 @@ const ProductPage = () => {
     };
     
     fetchFoodItems();
+
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    setIsMobile(isMobileDevice);
   }, [navigate]);
 
+
+
+  
   useEffect(() => {
     
     setIsCartVisible(cart.length > 0);
@@ -240,7 +246,7 @@ const ProductPage = () => {
         )}
       </div>
 
-      <DeliveryInfo />
+      {!isMobile && <DeliveryInfo />}
       <RestaurantMap />
       <ReviewList />
       <RestaurantsSection />
