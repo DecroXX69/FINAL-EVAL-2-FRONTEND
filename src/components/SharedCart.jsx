@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, MapPin, ChevronRight } from 'lucide-react';
 import TopNavbar from './TopNavbar';
 import MainNavbar from './MainNavbar';
 import RestaurantsSection from './RestaurantsSection';
 import Footer from './footer';
 import styles from './CheckoutPage.module.css';
-
+import addressIcon from '../assets/address.png'; 
+import Arrow from '../assets/arrow-left.png';
+import Vector from '../assets/Vector.png';
 
 const SharedCart = () => {
   const navigate = useNavigate();
@@ -124,7 +125,7 @@ const SharedCart = () => {
       <div className={styles.contentContainer}>
         <div className={styles.orderHeader}>
           <button className={styles.backButton} onClick={() => navigate(-1)}>
-            <ArrowLeft size={24} />
+            <img src={Arrow} alt="Back" />
           </button>
           <h1>Shared Cart Details</h1>
         </div>
@@ -162,13 +163,13 @@ const SharedCart = () => {
                 onClick={handleAddressClick}
               >
                 <div className={styles.addressContent}>
-                  <MapPin size={20} />
+                  <img src={addressIcon} alt="Location" />
                   <div className={styles.addressInfo}>
                     <h3>Delivery Address</h3>
                     <p>Add address</p>
                   </div>
                 </div>
-                <ChevronRight size={20} />
+                <img src={Vector} alt="Vector"  />
               </button>
             </div>
 
