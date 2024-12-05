@@ -9,7 +9,7 @@ import DeliveryInfo from './DeliveryInfo';
 import RestaurantMap from './RestaurantMap';
 import ReviewList from './ReviewList';
 import RestaurantsSection from './RestaurantsSection';
-import Footer  from './footer';
+import Footer from './footer';
 import Cart from './Cart';
 
 import orderIcon from '../assets/order-icon.png';
@@ -26,34 +26,43 @@ import addToCartIcon from '../assets/add-to-cart-icon.png';
 const ProductPage = () => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const [foodItems, setFoodItems] = useState([]);
-  const [cart, setCart] = useState([]); 
+  const [filteredFoodItems, setFilteredFoodItems] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [cart, setCart] = useState([]);
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { 
-    cart: contextCart, 
-    addToCart: contextAddToCart, 
-    removeFromCart: contextRemoveFromCart, 
-    updateQuantity: contextUpdateQuantity 
+  
+  const {
+    cart: contextCart,
+    addToCart: contextAddToCart,
+    removeFromCart: contextRemoveFromCart,
+    updateQuantity: contextUpdateQuantity
   } = useContext(CartContext);
 
   const navigate = useNavigate();
 
+  // Initial setup effect
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const restaurantId = params.get('id');
+    
     const storedRestaurant = localStorage.getItem('selectedRestaurant');
-    if (!storedRestaurant) {
+    if (!storedRestaurant && !restaurantId) {
       navigate('/');
       return;
     }
-    setSelectedRestaurant(JSON.parse(storedRestaurant));
+
+    const currentRestaurant = JSON.parse(storedRestaurant);
+    setSelectedRestaurant(currentRestaurant);
 
     const fetchFoodItems = async () => {
       const token = localStorage.getItem('token');
-    
+
       if (!token) {
         console.error("No token found in localStorage");
         return;
       }
-    
+
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/food-items`, {
           method: 'GET',
@@ -62,71 +71,83 @@ const ProductPage = () => {
             'Authorization': `Bearer ${token}`,
           },
         });
-    
-        console.log('Response status:', response.status);
-        
+
         if (!response.ok) {
           const errorText = await response.text();
           console.error('Error fetching food items:', errorText);
           return;
         }
-    
+
         const foodItems = await response.json();
-        console.log('Food Items:', foodItems);
         setFoodItems(foodItems);
+        setFilteredFoodItems(foodItems); // Initialize filtered items with all items
       } catch (error) {
         console.error('Fetch error:', error);
       }
     };
-    
+
     fetchFoodItems();
 
     const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     setIsMobile(isMobileDevice);
   }, [navigate]);
 
-
-
-  
+  // Search effect
   useEffect(() => {
-    
+    const filtered = foodItems.filter(item =>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredFoodItems(filtered);
+  }, [searchQuery, foodItems]);
+
+  // Cart visibility effect
+  useEffect(() => {
     setIsCartVisible(cart.length > 0);
   }, [cart]);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleRestaurantUpdate = (newRestaurant) => {
+    setSelectedRestaurant(newRestaurant);
+    localStorage.setItem('selectedRestaurant', JSON.stringify(newRestaurant));
+    setCart([]);
+    setIsCartVisible(false);
+  };
 
   const handleAddToCart = (item) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(cartItem => cartItem._id === item._id);
       if (existingItem) {
-        
-        return prevCart.map(cartItem => 
-          cartItem._id === item._id 
-            ? {...cartItem, quantity: cartItem.quantity + 1}
+        return prevCart.map(cartItem =>
+          cartItem._id === item._id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         );
       }
-      
-      return [...prevCart, {...item, quantity: 1}];
+      return [...prevCart, { ...item, quantity: 1 }];
     });
-    contextAddToCart(item); 
+    contextAddToCart(item);
   };
-  
+
   const handleRemoveFromCart = (itemId) => {
     setCart(prevCart => prevCart.filter(item => item._id !== itemId));
-    contextRemoveFromCart(itemId); 
+    contextRemoveFromCart(itemId);
   };
-  
+
   const handleUpdateQuantity = (itemId, newQuantity) => {
     if (newQuantity < 1) return;
-    setCart(prevCart => 
-      prevCart.map(item => 
-        item._id === itemId 
-          ? {...item, quantity: newQuantity}
+    setCart(prevCart =>
+      prevCart.map(item =>
+        item._id === itemId
+          ? { ...item, quantity: newQuantity }
           : item
       )
     );
-    contextUpdateQuantity(itemId, newQuantity); 
+    contextUpdateQuantity(itemId, newQuantity);
   };
-
 
   const handleCartToggle = () => {
     if (cart.length > 0) {
@@ -136,13 +157,13 @@ const ProductPage = () => {
     }
   };
 
+  const getFilteredItemsByCategory = (category) => {
+    return filteredFoodItems.filter(item => item.category === category);
+  };
+
   if (!selectedRestaurant) {
     return null;
   }
-
-  const burgers = foodItems.filter(item => item.category === 'Burgers');
-  const fries = foodItems.filter(item => item.category === 'Fries');
-  const coldDrinks = foodItems.filter(item => item.category === 'Cold Drinks');
 
   return (
     <div className={styles.productPage}>
@@ -184,7 +205,12 @@ const ProductPage = () => {
           <h2>All Offers from {selectedRestaurant.name}</h2>
           <div className={styles.searchBar}>
             <img src={searchIcon} alt="Search" />
-            <input type="text" placeholder="Search from menu..." />
+            <input 
+              type="text" 
+              placeholder="Search from menu..." 
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
           </div>
         </div>
 
@@ -207,38 +233,52 @@ const ProductPage = () => {
 
       <div className={styles.contentWrapper}>
         <div className={styles.mainContent}>
-          <div className={`${styles.offersGrid} ${cart.length > 0 ? styles.withCart : ''}`}>
-            <img src={offer1} alt="Offer 1" />
-            <img src={offer2} alt="Offer 2" />
-            <img src={offer3} alt="Offer 3" />
-          </div>
-          
+          {
+            <div className={`${styles.offersGrid} ${cart.length > 0 ? styles.withCart : ''}`}>
+              <img src={offer1} alt="Offer 1" />
+              <img src={offer2} alt="Offer 2" />
+              <img src={offer3} alt="Offer 3" />
+            </div>
+}
+
           <div className={`${styles.foodSectionsWrapper} ${cart.length > 0 ? styles.withCart : ''}`}>
-            <FoodSection 
-              title="Burgers"
-              items={burgers}
-              onAddToCart={handleAddToCart}
-              addToCartIcon={addToCartIcon}
-            />
-            
-            <FoodSection 
-              title="Fries"
-              items={fries}
-              onAddToCart={handleAddToCart}
-              addToCartIcon={addToCartIcon}
-            />
-            
-            <FoodSection 
-              title="Cold Drinks"
-              items={coldDrinks}
-              onAddToCart={handleAddToCart}
-              addToCartIcon={addToCartIcon}
-            />
+            {getFilteredItemsByCategory('Burgers').length > 0 && (
+              <FoodSection
+                title="Burgers"
+                items={getFilteredItemsByCategory('Burgers')}
+                onAddToCart={handleAddToCart}
+                addToCartIcon={addToCartIcon}
+              />
+            )}
+
+            {getFilteredItemsByCategory('Fries').length > 0 && (
+              <FoodSection
+                title="Fries"
+                items={getFilteredItemsByCategory('Fries')}
+                onAddToCart={handleAddToCart}
+                addToCartIcon={addToCartIcon}
+              />
+            )}
+
+            {getFilteredItemsByCategory('Cold Drinks').length > 0 && (
+              <FoodSection
+                title="Cold Drinks"
+                items={getFilteredItemsByCategory('Cold Drinks')}
+                onAddToCart={handleAddToCart}
+                addToCartIcon={addToCartIcon}
+              />
+            )}
+
+            {filteredFoodItems.length === 0 && searchQuery && (
+              <div className={styles.noResults}>
+                <p>No items found matching "{searchQuery}"</p>
+              </div>
+            )}
           </div>
         </div>
-        
+
         {isCartVisible && (
-          <Cart 
+          <Cart
             items={cart}
             removeFromCart={handleRemoveFromCart}
             updateQuantity={handleUpdateQuantity}
@@ -249,7 +289,10 @@ const ProductPage = () => {
       {!isMobile && <DeliveryInfo />}
       <RestaurantMap />
       <ReviewList />
-      <RestaurantsSection />
+      <RestaurantsSection
+        onRestaurantSelect={handleRestaurantUpdate}
+        currentRestaurantId={selectedRestaurant?.id}
+      />
       <Footer />
     </div>
   );

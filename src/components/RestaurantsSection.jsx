@@ -1,5 +1,6 @@
+// RestaurantsSection.jsx
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './NavbarStyles.module.css';
 import mcd from '../assets/mcd.png';
 import papa from '../assets/papa.png';
@@ -8,8 +9,13 @@ import texas from '../assets/texas.png';
 import king from '../assets/king.png';
 import shawarma from '../assets/shawarma.png';
 
-const RestaurantsSection = ({ title = "Popular Restaurants" }) => {
+const RestaurantsSection = ({ 
+  title = "Popular Restaurants",
+  onRestaurantSelect,
+  currentRestaurantId
+}) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const restaurants = [
     { logo: mcd, id: 'mcdonalds', name: "McDonald's East London", slogan: "I'm lovin' it!" },
@@ -21,8 +27,21 @@ const RestaurantsSection = ({ title = "Popular Restaurants" }) => {
   ];
 
   const handleRestaurantClick = (restaurant) => {
-    localStorage.setItem('selectedRestaurant', JSON.stringify(restaurant));
-    navigate('/product');
+    // If we're already on the product page
+    if (location.pathname === '/product') {
+      // Update URL without full navigation
+      const newUrl = `/product?id=${restaurant.id}`;
+      window.history.pushState({}, '', newUrl);
+      
+      // Call the update handler if provided
+      if (onRestaurantSelect) {
+        onRestaurantSelect(restaurant);
+      }
+    } else {
+      // If we're not on the product page, do the original navigation
+      localStorage.setItem('selectedRestaurant', JSON.stringify(restaurant));
+      navigate(`/product?id=${restaurant.id}`);
+    }
   };
 
   return (
@@ -30,12 +49,14 @@ const RestaurantsSection = ({ title = "Popular Restaurants" }) => {
       <h2>{title}</h2>
       <div className={styles.restaurantsGrid}>
         {restaurants.map((restaurant, index) => (
-          <div 
-            key={index} 
-            className={styles.restaurantCard}
+          <div
+            key={index}
+            className={`${styles.restaurantCard} ${
+              currentRestaurantId === restaurant.id ? styles.selectedRestaurant : ''
+            }`}
             onClick={() => handleRestaurantClick(restaurant)}
           >
-            <img src={restaurant.logo} alt="Restaurant logo" />
+            <img src={restaurant.logo} alt={`${restaurant.name} logo`} />
           </div>
         ))}
       </div>
