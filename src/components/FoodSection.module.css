@@ -87,20 +87,22 @@
     position: absolute;
     bottom: -0.5rem;
     right: -0.5rem;
-    background-color: #000;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
+    background-color: white;
+    width: 40px;
+    height: 36px;
+    border-top-left-radius: 50%;
+    
+    display: flex
+;
     justify-content: center;
     align-items: center;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 15px;
 }
 
 .addToCartButton img {
-    width: 12px;
-    height: 12px;
-    filter: invert(1);
+    width: 46px;
+    height: 29px;
+    
 }

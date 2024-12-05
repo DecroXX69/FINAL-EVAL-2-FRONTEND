@@ -29,11 +29,11 @@ body{
 
 .promoText {
   font-size: 0.875rem;
-  color: black; /* Default color for the main promo text */
+  color: black; 
 }
 
 .promoCode {
-  color: #fc8a06; /* Highlighted color for "PROMO: ORDER5" */
+  color: #fc8a06; 
 }
 
 .location {

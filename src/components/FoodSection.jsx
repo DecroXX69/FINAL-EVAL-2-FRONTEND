@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './FoodSection.module.css';
-
+import addToCartIcon from '../assets/Plus.png';
 const FoodSection = ({ title, items, onAddToCart, addToCartIcon, isOrange }) => {
   return (
     <div className={styles.section}>
