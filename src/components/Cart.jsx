@@ -33,7 +33,7 @@ const Cart = ({ items, removeFromCart, updateQuantity }) => {
                 deliveryFee
             };
 
-            const response = await fetch('http://localhost:5000/api/shared-carts', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/shared-carts`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

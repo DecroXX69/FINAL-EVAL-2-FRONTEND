@@ -55,7 +55,7 @@ const ProductPage = () => {
       }
     
       try {
-        const response = await fetch('http://localhost:5000/api/food-items', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/food-items`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
