@@ -20,7 +20,7 @@ const AddressSection = ({ onBack }) => {
       try {
         console.log('User ID:', user ? user.user.id : 'No ID'); 
         console.log('User from AuthContext:', user);
-        const response = await fetch(`http://localhost:5000/api/users/${user.user.id}/addresses`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${user.user.id}/addresses`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const AddressSection = ({ onBack }) => {
   const handleAddAddress = async (address) => {
     const token = localStorage.getItem('token');
     try {
-      let url = `http://localhost:5000/api/users/${user.user.id}/addresses`;
+      let url = `${process.env.REACT_APP_API_URL}/api/users/${user.user.id}/addresses`;
       let method = 'POST';
 
       if (editingAddress !== null) {
@@ -83,7 +83,7 @@ const AddressSection = ({ onBack }) => {
     try {
       const addressId = addresses[index]._id;
       console.log(addressId);
-      const response = await fetch(`http://localhost:5000/api/users/${user.user.id}/addresses/${addressId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${user.user.id}/addresses/${addressId}`, {
         method: 'DELETE',
         headers: { 
           'Authorization': `Bearer ${token}`,

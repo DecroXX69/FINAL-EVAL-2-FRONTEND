@@ -19,7 +19,7 @@ const SharedCart = () => {
     const fetchCartData = async () => {
         try {
           setLoading(true);
-          const response = await fetch(`http://localhost:5000/api/shared-carts/${cartId}`, {
+          const response = await fetch(`${process.env.REACT_APP_API_URL}/api/shared-carts/${cartId}`, {
             method: 'GET',
             headers: {
               'Accept': 'application/json',
