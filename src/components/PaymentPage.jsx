@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ChevronRight, Wallet } from 'lucide-react';
 import styles from './PaymentPage.module.css';
 import  TopNavbar from './TopNavbar';
 import MainNavbar from './MainNavbar';
 import Footer from './footer';
 import check from '../assets/check.png';
+import wallet from '../assets/Wallet.png';
+import Arrow from '../assets/arrow-left.png';
+import Vector from '../assets/Vector.png';
 const PaymentPage = () => {
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
@@ -29,7 +31,7 @@ const PaymentPage = () => {
         <>
           <div className={styles.header}>
             <button className={styles.backButton} onClick={() => navigate(-1)}>
-              <ArrowLeft size={24} />
+              <img src={Arrow} alt="Back" />
             </button>
             <h1>Choose and Pay</h1>
           </div>
@@ -40,14 +42,14 @@ const PaymentPage = () => {
                 <div className={styles.walletOption}>
                   <div className={styles.leftContent}>
                     <div className={styles.iconCircle} style={{ backgroundColor: '#FFF3E9' }}>
-                      <Wallet size={20} color="#FF8A00" />
+                      <img src={wallet} alt="Wallet" className={styles.walletIcon} />
                     </div>
                     <div className={styles.walletInfo}>
                       <span className={styles.methodName}>Wallet</span>
                       <span className={styles.balance}>Available balance: ₹300</span>
                     </div>
                   </div>
-                  <ChevronRight size={20} color="#FF8A00" />
+                  <img src={Vector} alt="Vector" className={styles.vector} />
                 </div>
               </div>
 

@@ -10,7 +10,7 @@ const TopNavbar = ({ onCartToggle }) => {
 
   const handleCartToggle = () => {
     setIsCartVisible(!isCartVisible);
-    onCartToggle(); // Notify parent component about cart toggle
+    onCartToggle(); 
   };
 
   return (
@@ -18,7 +18,10 @@ const TopNavbar = ({ onCartToggle }) => {
       <div className={styles.topNavContent}>
         <div className={styles.leftContent}>
           <span><img src={gift} alt="gift" className={styles.storeLogo} /></span>
-          <span className={styles.promoText}>Get 5% OFF your first order, PROMO: ORDER5</span>
+          <span className={styles.promoText}>
+            Get 5% OFF your first order, 
+            <span className={styles.promoCode}> PROMO: ORDER5</span>
+          </span>
           <div className={styles.location}>
             <img src={location} alt="location" className={styles.storeLogo} />
             <span>Regent Street, A4 A4201, London</span>

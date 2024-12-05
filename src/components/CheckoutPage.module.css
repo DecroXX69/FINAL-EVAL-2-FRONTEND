@@ -121,12 +121,15 @@
 .addressInfo h3 {
   font-size: 16px;
   margin: 0;
+  position: relative;
+  right: 35px;
 }
 
 .addressInfo p {
   font-size: 14px;
   color: #666;
   margin: 5px 0 0;
+  
 }
 
 .summarySection {
@@ -173,4 +176,15 @@
 
 .paymentButton:hover {
   background: #ea580c;
+}
+
+.addressIcon{
+  position: relative;
+  top: 5px;
+  right: 5px;
+}
+.vectorIcon{
+  position: relative;
+  top: 1px;
+  right: 5px;
 }

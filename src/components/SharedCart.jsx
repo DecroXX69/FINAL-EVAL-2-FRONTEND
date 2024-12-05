@@ -7,6 +7,7 @@ import RestaurantsSection from './RestaurantsSection';
 import Footer from './footer';
 import styles from './CheckoutPage.module.css';
 
+
 const SharedCart = () => {
   const navigate = useNavigate();
   const { cartId } = useParams();

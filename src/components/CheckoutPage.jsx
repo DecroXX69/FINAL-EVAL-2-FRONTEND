@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { ArrowLeft, MapPin, ChevronRight } from 'lucide-react';
 import TopNavbar from './TopNavbar';
 import MainNavbar from './MainNavbar';
 import RestaurantsSection from './RestaurantsSection';
@@ -8,6 +7,8 @@ import Footer from './footer';
 import styles from './CheckoutPage.module.css';
 import AddressSection from './AddressSection';
 import addressIcon from '../assets/address.png'; 
+import Arrow from '../assets/arrow-left.png';
+import Vector from '../assets/Vector.png';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -105,7 +106,7 @@ const CheckoutPage = () => {
         <div className={styles.contentContainer}>
           <div className={styles.orderHeader}>
             <button className={styles.backButton} onClick={() => navigate(-1)}>
-              <ArrowLeft size={24} />
+              <img src={Arrow} alt="Back" className={styles.backIcon} />
             </button>
             <h1>{cartId ? 'Shared Cart Details' : 'Your Order Details'}</h1>
           </div>
@@ -169,7 +170,7 @@ const CheckoutPage = () => {
                       )}
                     </div>
                   </div>
-                  <ChevronRight size={20} />
+                  <img src={Vector} alt="vector" className={styles.vectorIcon} />
                 </button>
               </div>
 

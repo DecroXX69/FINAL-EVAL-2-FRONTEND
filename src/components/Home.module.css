@@ -373,11 +373,11 @@
   .downloadSection {
     background: linear-gradient(180deg, #EEEEEE 0%, #E0E1DC 100%);
     max-width: 1400px;
-    margin: 2rem auto;
+    margin: 4rem auto;
     padding: 3rem;
     border-radius: 10px;
     position: relative;
-    overflow: hidden;
+    
   }
   
   .downloadContent {
@@ -386,27 +386,28 @@
   }
   
   .downloadLeft {
-    display: flex;
+    display: flex
+;
     width: 100%;
     position: relative;
+    left: 50px;
   }
   
   .coupleImage {
     width: 590px;
     height: 429px;
     position: absolute;
-    left: -50px;
-    bottom: -32px;
+    left: -45px;
+    bottom: -46px;
     z-index: 2;
   }
   
   .coupleImage2 {
     width: 550px;
     height: 400px;
-    
     position: absolute;
-    left: -100px;
-    bottom: -32px;
+    left: -44px;
+    bottom: -16px;
     opacity: 0.2;
     z-index: 1;
   }
@@ -457,13 +458,14 @@
   .downloadInfo {
     font-size: 1.2rem;
     margin-top: 2rem;
-    color: #666;
+    color: black;
     font-family: 'Poppins', sans-serif;
+    margin-left: 100px;
   }
   
   .storeButtons {
     margin-top: 2rem;
-    text-align: right;
+    text-align: center;
     font-family: 'Poppins', sans-serif;
   }
   
@@ -720,11 +722,9 @@
     }
   }
 
-  /* Add these to your Home.module.css */
+  
 @media screen and (max-width: 768px) {
-  .container {
-    /* Add any mobile-specific container styles */
-  }
+ 
 
   .heroContent {
     flex-direction: column;
@@ -739,5 +739,5 @@
     width: 100%;
   }
 
-  /* Add other mobile-specific styles as needed */
+  
 }

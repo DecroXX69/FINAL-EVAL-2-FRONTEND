@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const API = axios.create({
-  baseURL: `${process.env.REACT_APP_API_URL}/api` || 'http://localhost:5000/api',
+  baseURL: `${process.env.REACT_APP_API_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
   }
@@ -35,6 +35,8 @@ export const handleApiError = (error) => {
   if (error.response) {
    
     console.error('Error Response:', error.response.data);
+    console.log('Base URL:', process.env.REACT_APP_API_URL);
+
     return error.response.data.message || 'An error occurred';
   } else if (error.request) {
     

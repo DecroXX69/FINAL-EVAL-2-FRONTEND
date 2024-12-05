@@ -1,4 +1,6 @@
-
+body{
+  font-family: 'Poppins', sans-serif;
+}
 /* Top Navbar Styles */
 .topNav {
   background-color: #fafafa;
@@ -27,7 +29,11 @@
 
 .promoText {
   font-size: 0.875rem;
-  color: #fc8a06;
+  color: black; /* Default color for the main promo text */
+}
+
+.promoCode {
+  color: #fc8a06; /* Highlighted color for "PROMO: ORDER5" */
 }
 
 .location {
